@@ -6,7 +6,7 @@ A premium dark personal portfolio for San, with a public projects site and a pro
 
 - Public homepage with editable intro, projects, contact links, SEO metadata, sitemap, and robots file.
 - Project preview pages at `/projects/[slug]` with iframe fallback messaging.
-- Admin login at `/admin/login` using Supabase email/password authentication.
+- Admin login at `/admin/login` using either a simple server-side admin credential or Supabase email/password authentication.
 - Protected admin dashboard, projects CRUD, publish/draft, featured status, ordering, and settings editor.
 - Server-side screenshot generation route with URL validation and SSRF protection.
 - Supabase SQL migration with tables, storage bucket, triggers, and row-level security policies.
@@ -18,7 +18,7 @@ A premium dark personal portfolio for San, with a public projects site and a pro
 2. Copy `.env.example` to `.env.local`.
 3. Fill in Supabase and screenshot provider values.
 4. Run the SQL in `supabase/migrations/001_initial_schema.sql` inside the Supabase SQL editor.
-5. Create one administrator in Supabase Auth with email and password.
+5. Set `ADMIN_USERNAME` and `ADMIN_PASSWORD`, or create one administrator in Supabase Auth with email and password.
 6. Start the app with `npm run dev`.
 
 ## Supabase Configuration
@@ -38,7 +38,7 @@ The included RLS policies allow:
 - Authenticated administrators to create, update, and delete projects and settings.
 - Public users to read stored screenshots.
 
-For a single-admin setup, create only San's admin user in Supabase Auth.
+For a single-admin setup, either set one server-side admin username/password or create only San's admin user in Supabase Auth.
 
 ## Screenshot Provider
 

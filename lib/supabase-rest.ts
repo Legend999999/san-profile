@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { getSupabaseConfig } from "./config";
+import { isSimpleAdminSession } from "./simple-admin-auth";
 
 type RequestOptions = {
   method?: "GET" | "POST" | "PATCH" | "DELETE";
@@ -26,7 +27,10 @@ export async function supabaseRequest<T>(
   }
 
   const authToken = serviceRole ? config.serviceRoleKey : token ?? config.anonKey;
-  if (!authToken) {
+  const resolvedAuthToken = isSimpleAdminSession(authToken)
+    ? config.serviceRoleKey
+    : authToken;
+  if (!resolvedAuthToken) {
     throw new SupabaseConfigError("The required Supabase server key is missing.");
   }
 
@@ -34,7 +38,7 @@ export async function supabaseRequest<T>(
     method,
     headers: {
       apikey: config.anonKey,
-      Authorization: `Bearer ${authToken}`,
+      Authorization: `Bearer ${resolvedAuthToken}`,
       "Content-Type": "application/json",
       ...(prefer ? { Prefer: prefer } : {}),
     },
