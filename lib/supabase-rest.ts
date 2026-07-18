@@ -13,7 +13,7 @@ export class SupabaseConfigError extends Error {}
 
 export async function getSessionToken() {
   const store = await cookies();
-  return store.get("sam-admin-access-token")?.value ?? null;
+  return store.get("san-admin-access-token")?.value ?? null;
 }
 
 export async function supabaseRequest<T>(

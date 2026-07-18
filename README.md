@@ -1,6 +1,6 @@
-# Sam Portfolio
+# San Portfolio
 
-A premium dark personal portfolio for Sam, with a public projects site and a protected admin dashboard for managing projects without editing code.
+A premium dark personal portfolio for San, with a public projects site and a protected admin dashboard for managing projects without editing code.
 
 ## What Is Included
 
@@ -38,7 +38,7 @@ The included RLS policies allow:
 - Authenticated administrators to create, update, and delete projects and settings.
 - Public users to read stored screenshots.
 
-For a single-admin setup, create only Sam's admin user in Supabase Auth.
+For a single-admin setup, create only San's admin user in Supabase Auth.
 
 ## Screenshot Provider
 
@@ -58,7 +58,7 @@ The provider can later be swapped for ScreenshotOne, Cloudflare Browser Renderin
 1. Push this project to GitHub.
 2. Import the repository into Vercel.
 3. Add all variables from `.env.example` in Vercel Project Settings.
-4. Set `NEXT_PUBLIC_SITE_URL` to your final domain, such as `https://sam.com`.
+4. Set `NEXT_PUBLIC_SITE_URL` to your final domain, such as `https://san.com`.
 5. Deploy.
 
 ## Cloudflare DNS

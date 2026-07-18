@@ -35,7 +35,7 @@ export default async function ProjectPreview({ params }: { params: Promise<{ slu
         <div className="site-shell nav-inner">
           <Link className="brand" href="/">
             <span className="brand-mark">S</span>
-            <span>Sam</span>
+            <span>San</span>
           </Link>
           <nav className="nav-links" aria-label="Project navigation">
             <Link href="/#projects">Back to Projects</Link>

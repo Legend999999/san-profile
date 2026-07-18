@@ -7,7 +7,7 @@ export default function AdminPrivateLayout({ children }: { children: React.React
       <aside className="sidebar">
         <Link className="brand" href="/admin">
           <span className="brand-mark">S</span>
-          <span>Sam Admin</span>
+          <span>San Admin</span>
         </Link>
         <nav className="sidebar-nav" aria-label="Admin navigation">
           <Link href="/admin">Dashboard</Link>

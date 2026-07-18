@@ -25,13 +25,13 @@ async function render(path = "/") {
   );
 }
 
-test("server-renders Sam portfolio homepage", async () => {
+test("server-renders San portfolio homepage", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /Sam/);
+  assert.match(html, /San/);
   assert.match(html, /Projects/);
   assert.match(html, /Contact/);
   assert.doesNotMatch(html, /codex-preview|react-loading-skeleton|_sites-preview/);

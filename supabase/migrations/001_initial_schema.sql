@@ -19,14 +19,14 @@ create table if not exists public.projects (
 
 create table if not exists public.website_settings (
   id uuid primary key default gen_random_uuid(),
-  site_title text not null default 'Sam Portfolio',
-  owner_name text not null default 'Sam',
+  site_title text not null default 'San Portfolio',
+  owner_name text not null default 'San',
   introduction text not null default 'I build modern websites, useful tools, and digital experiences.',
   about_text text not null default 'A focused portfolio for websites, tools, and digital experiences.',
   github_url text,
   telegram_url text,
   email text,
-  footer_text text not null default '© Sam. Built for modern web projects.',
+  footer_text text not null default '© San. Built for modern web projects.',
   updated_at timestamptz not null default now()
 );
 
@@ -41,14 +41,14 @@ insert into public.website_settings (
   footer_text
 )
 select
-  'Sam Portfolio',
-  'Sam',
+  'San Portfolio',
+  'San',
   'I build modern websites, useful tools, and digital experiences.',
   'A focused portfolio for websites, tools, and digital experiences created with clean design and reliable engineering.',
   'https://github.com/',
   'https://t.me/',
-  'sam@example.com',
-  '© Sam. Built for modern web projects.'
+  'san@example.com',
+  '© San. Built for modern web projects.'
 where not exists (select 1 from public.website_settings);
 
 create or replace function public.set_updated_at()

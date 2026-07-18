@@ -7,13 +7,13 @@ export function proxy(request: NextRequest) {
     pathname.startsWith("/admin/projects") ||
     pathname.startsWith("/admin/settings");
 
-  if (protectedAdmin && !request.cookies.get("sam-admin-access-token")) {
+  if (protectedAdmin && !request.cookies.get("san-admin-access-token")) {
     const login = new URL("/admin/login", request.url);
     login.searchParams.set("next", pathname);
     return NextResponse.redirect(login);
   }
 
-  if (pathname === "/admin/login" && request.cookies.get("sam-admin-access-token")) {
+  if (pathname === "/admin/login" && request.cookies.get("san-admin-access-token")) {
     return NextResponse.redirect(new URL("/admin", request.url));
   }
 

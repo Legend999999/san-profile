@@ -12,31 +12,31 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sam.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://san.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Sam | Modern Website Portfolio",
-    template: "%s | Sam",
+    default: "San | Modern Website Portfolio",
+    template: "%s | San",
   },
   description:
-    "Sam builds modern websites, useful tools, and polished digital experiences.",
+    "San builds modern websites, useful tools, and polished digital experiences.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Sam | Modern Website Portfolio",
+    title: "San | Modern Website Portfolio",
     description:
       "A premium dark portfolio for modern websites and digital experiences.",
     url: siteUrl,
-    siteName: "Sam Portfolio",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Sam portfolio" }],
+    siteName: "San Portfolio",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "San portfolio" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sam | Modern Website Portfolio",
+    title: "San | Modern Website Portfolio",
     description:
       "A premium dark portfolio for modern websites and digital experiences.",
     images: ["/og.png"],

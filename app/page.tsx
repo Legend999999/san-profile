@@ -40,7 +40,7 @@ export default async function Home() {
                   View Projects
                 </a>
                 <a className="button" href="#contact">
-                  Contact Sam
+                  Contact San
                 </a>
               </div>
             </div>

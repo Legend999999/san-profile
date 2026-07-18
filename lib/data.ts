@@ -9,7 +9,7 @@ const sampleProjects: Project[] = [
     slug: "aurora-studio",
     short_description: "A polished website concept for a modern digital studio.",
     full_description:
-      "A sample published project that shows how Sam's website cards and preview pages will look after Supabase is connected.",
+      "A sample published project that shows how San's website cards and preview pages will look after Supabase is connected.",
     website_url: "https://example.com",
     screenshot_url: null,
     technologies: ["Next.js", "TypeScript", "Tailwind CSS"],

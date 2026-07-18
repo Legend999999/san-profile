@@ -35,14 +35,14 @@ async function login(formData: FormData) {
   };
   const store = await cookies();
   const secureCookie = process.env.NODE_ENV === "production";
-  store.set("sam-admin-access-token", session.access_token, {
+  store.set("san-admin-access-token", session.access_token, {
     httpOnly: true,
     sameSite: "lax",
     secure: secureCookie,
     maxAge: session.expires_in,
     path: "/",
   });
-  store.set("sam-admin-refresh-token", session.refresh_token, {
+  store.set("san-admin-refresh-token", session.refresh_token, {
     httpOnly: true,
     sameSite: "lax",
     secure: secureCookie,
@@ -65,7 +65,7 @@ export default async function AdminLogin({
       <section className="form-panel login-card">
         <div className="brand">
           <span className="brand-mark">S</span>
-          <span>Sam Admin</span>
+          <span>San Admin</span>
         </div>
         <h1>Sign in</h1>
         <p className="muted">Use the administrator email and password created in Supabase.</p>
