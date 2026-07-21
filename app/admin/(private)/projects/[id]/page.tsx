@@ -5,7 +5,9 @@ import { ProjectForm } from "@/components/admin/ProjectForm";
 export default async function EditProject({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const project = await getAdminProjectById(id);
-  if (!project) notFound();
+  if (!project) {
+    return notFound();
+  }
 
   return (
     <>

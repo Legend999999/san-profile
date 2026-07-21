@@ -26,7 +26,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function ProjectPreview({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const project = await getProjectBySlug(slug);
-  if (!project) notFound();
+  if (!project) {
+    return notFound();
+  }
   const canTryIframe = isProbablyEmbeddable(project.website_url);
 
   return (

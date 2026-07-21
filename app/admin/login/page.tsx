@@ -26,7 +26,7 @@ async function login(formData: FormData) {
   const config = getSupabaseConfig();
 
   if (!config) {
-    redirect("/admin/login?error=Invalid%20username%20or%20password");
+    return redirect("/admin/login?error=Invalid%20username%20or%20password");
   }
 
   const response = await fetch(`${config.url}/auth/v1/token?grant_type=password`, {

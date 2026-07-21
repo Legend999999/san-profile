@@ -59,7 +59,8 @@ The provider can later be swapped for ScreenshotOne, Cloudflare Browser Renderin
 2. Import the repository into Vercel.
 3. Add all variables from `.env.example` in Vercel Project Settings.
 4. Set `NEXT_PUBLIC_SITE_URL` to your final domain, such as `https://san.com`.
-5. Deploy.
+5. Make sure the Vercel Build Command is `npm run build` and the Output Directory is `.next`.
+6. Deploy.
 
 ## Cloudflare DNS
 
