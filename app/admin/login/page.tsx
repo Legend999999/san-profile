@@ -75,28 +75,95 @@ export default async function AdminLogin({
 
   return (
     <main className="login-shell">
-      <section className="form-panel login-card">
-        <div className="brand">
-          <span className="brand-mark">S</span>
-          <span>San Admin</span>
+      <div className="login-aura login-aura-one" />
+      <div className="login-aura login-aura-two" />
+      <section className="login-stage" aria-label="San admin sign in">
+        <div className="login-copy">
+          <div className="brand login-brand">
+            <span className="brand-mark">S</span>
+            <span>San Portfolio</span>
+          </div>
+          <p className="eyebrow">Private workspace</p>
+          <h1>Manage every project from one calm control room.</h1>
+          <p className="lead">
+            Add websites, publish featured work, refresh screenshots, and tune the
+            public portfolio without touching code.
+          </p>
+          <div className="login-metrics" aria-label="Admin features">
+            <span>Projects</span>
+            <span>Settings</span>
+            <span>Publishing</span>
+          </div>
+          <div className="login-preview" aria-hidden="true">
+            <div className="login-preview-top">
+              <span />
+              <span />
+              <span />
+            </div>
+            <div className="login-preview-body">
+              <div>
+                <small>Featured project</small>
+                <strong>Modern Website</strong>
+              </div>
+              <div className="login-preview-graph">
+                <span />
+                <span />
+                <span />
+                <span />
+              </div>
+            </div>
+          </div>
         </div>
-        <h1>Sign in</h1>
-        <p className="muted">Use the admin username and password.</p>
-        {params.error ? <p className="notice">{decodeURIComponent(params.error)}</p> : null}
-        <form action={login} className="form-grid" style={{ gridTemplateColumns: "1fr" }}>
-          <input type="hidden" name="next" value={params.next ?? "/admin"} />
-          <div className="field">
-            <label htmlFor="username">Username</label>
-            <input className="input" id="username" name="username" type="text" required />
-          </div>
-          <div className="field">
-            <label htmlFor="password">Password</label>
-            <input className="input" id="password" name="password" type="password" required />
-          </div>
-          <button className="button primary" type="submit">
-            Sign in
-          </button>
-        </form>
+
+        <div className="login-card-wrap">
+          <section className="form-panel login-card">
+            <div className="login-card-head">
+              <div>
+                <p className="muted">Welcome back</p>
+                <h2>Sign in</h2>
+              </div>
+              <span className="login-lock">Secure</span>
+            </div>
+            <p className="muted">Use your admin username and password.</p>
+            {params.error ? (
+              <p className="notice login-notice">{decodeURIComponent(params.error)}</p>
+            ) : null}
+            <form action={login} className="login-form">
+              <input type="hidden" name="next" value={params.next ?? "/admin"} />
+              <div className="field">
+                <label htmlFor="username">Username</label>
+                <input
+                  className="input"
+                  id="username"
+                  name="username"
+                  type="text"
+                  autoComplete="username"
+                  placeholder="adminsan"
+                  required
+                />
+              </div>
+              <div className="field">
+                <label htmlFor="password">Password</label>
+                <input
+                  className="input"
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  placeholder="Enter password"
+                  required
+                />
+              </div>
+              <button className="button primary login-submit" type="submit">
+                Sign in to dashboard
+              </button>
+            </form>
+            <div className="login-footnote">
+              <span>Protected admin area</span>
+              <a href="/">Back to portfolio</a>
+            </div>
+          </section>
+        </div>
       </section>
     </main>
   );
