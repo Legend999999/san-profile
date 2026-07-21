@@ -8,6 +8,7 @@ A premium dark personal portfolio for San, with a public projects site and a pro
 - Project preview pages at `/projects/[slug]` with iframe fallback messaging.
 - Admin login at `/admin/login` using either a simple server-side admin credential or Supabase email/password authentication.
 - Protected admin dashboard, projects CRUD, publish/draft, featured status, ordering, and settings editor.
+- GitHub-backed editable content storage for Vercel when Supabase is not configured.
 - Server-side screenshot generation route with URL validation and SSRF protection.
 - Supabase SQL migration with tables, storage bucket, triggers, and row-level security policies.
 - Deployment-ready environment variables for GitHub, Vercel, and Cloudflare-managed domains.
@@ -16,10 +17,26 @@ A premium dark personal portfolio for San, with a public projects site and a pro
 
 1. Install dependencies with `npm install`.
 2. Copy `.env.example` to `.env.local`.
-3. Fill in Supabase and screenshot provider values.
-4. Run the SQL in `supabase/migrations/001_initial_schema.sql` inside the Supabase SQL editor.
-5. Set `ADMIN_USERNAME` and `ADMIN_PASSWORD`, or create one administrator in Supabase Auth with email and password.
-6. Start the app with `npm run dev`.
+3. Fill in GitHub storage values, or Supabase and screenshot provider values.
+4. For GitHub storage, create a fine-grained GitHub token with Contents read/write access to this repository and add it as `GITHUB_TOKEN`.
+5. For Supabase storage, run the SQL in `supabase/migrations/001_initial_schema.sql` inside the Supabase SQL editor.
+6. Set `ADMIN_USERNAME` and `ADMIN_PASSWORD`, or create one administrator in Supabase Auth with email and password.
+7. Start the app with `npm run dev`.
+
+## Editable Content Without Supabase
+
+On Vercel, the admin dashboard can save projects and website settings to `content/site-data.json` in the GitHub repository.
+
+Set these Vercel Production environment variables:
+
+- `ADMIN_USERNAME`
+- `ADMIN_PASSWORD`
+- `GITHUB_REPO`
+- `GITHUB_BRANCH`
+- `CONTENT_FILE_PATH`
+- `GITHUB_TOKEN`
+
+`GITHUB_TOKEN` must be a fine-grained GitHub token for `Legend999999/san-profile` with Contents read/write permission. Keep it secret. Do not commit it to the repo.
 
 ## Supabase Configuration
 

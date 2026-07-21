@@ -9,7 +9,7 @@ async function captureWithGenericProvider(targetUrl: string) {
   const endpoint = process.env.SCREENSHOT_API_ENDPOINT;
   const token = process.env.SCREENSHOT_API_KEY;
   if (!endpoint || !token) {
-    throw new Error("Screenshot provider is not configured.");
+    return null;
   }
 
   const requestUrl = new URL(endpoint);
@@ -59,6 +59,11 @@ async function uploadScreenshot(bytes: ArrayBuffer, slug: string) {
 export async function generateScreenshot(url: string, slug: string): Promise<ScreenshotResult> {
   const safeUrl = validatePublicWebsiteUrl(url);
   const imageBytes = await captureWithGenericProvider(safeUrl);
+  if (!imageBytes) {
+    return {
+      screenshotUrl: `https://s.wordpress.com/mshots/v1/${encodeURIComponent(safeUrl)}?w=1400`,
+    };
+  }
   const screenshotUrl = await uploadScreenshot(imageBytes, slug);
   return { screenshotUrl };
 }

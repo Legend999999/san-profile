@@ -1,0 +1,15 @@
+{
+  "settings": {
+    "id": "site-settings",
+    "site_title": "San Portfolio",
+    "owner_name": "San",
+    "introduction": "I build modern websites, useful tools, and digital experiences.",
+    "about_text": "A focused portfolio for websites, tools, and digital experiences created with clean design and reliable engineering.",
+    "github_url": "https://github.com/Legend999999",
+    "telegram_url": "https://t.me/",
+    "email": "san@example.com",
+    "footer_text": "© San. Built for modern web projects.",
+    "updated_at": "2026-07-22T00:00:00.000Z"
+  },
+  "projects": []
+}
