@@ -15,7 +15,16 @@ type GitHubFile = {
 const contentPath = process.env.CONTENT_FILE_PATH ?? "content/site-data.json";
 const repo = process.env.GITHUB_REPO ?? "Legend999999/san-profile";
 const branch = process.env.GITHUB_BRANCH ?? "main";
-const token = process.env.GITHUB_TOKEN;
+
+function getGitHubToken() {
+  return (
+    process.env.GITHUB_TOKEN ||
+    process.env.github_token ||
+    process.env.GITHUB_PAT ||
+    process.env.GH_TOKEN ||
+    ""
+  ).trim();
+}
 
 function normalizeData(data: Partial<SiteData>): SiteData {
   return {
@@ -37,6 +46,7 @@ function encodeBase64(value: string) {
 }
 
 async function getGitHubFile(): Promise<{ data: SiteData; sha: string | null }> {
+  const token = getGitHubToken();
   const headers: HeadersInit = {
     Accept: "application/vnd.github+json",
     "X-GitHub-Api-Version": "2022-11-28",
@@ -59,9 +69,10 @@ async function getGitHubFile(): Promise<{ data: SiteData; sha: string | null }> 
 }
 
 async function saveGitHubFile(data: SiteData, sha: string | null, message: string) {
+  const token = getGitHubToken();
   if (!token) {
     throw new Error(
-      "GitHub saving is not ready yet. Add GITHUB_TOKEN in Vercel environment variables with Contents read/write permission.",
+      "GitHub saving is not ready yet. Add one Vercel Production environment variable named GITHUB_TOKEN, github_token, GITHUB_PAT, or GH_TOKEN with Contents read/write permission.",
     );
   }
 
@@ -82,8 +93,14 @@ async function saveGitHubFile(data: SiteData, sha: string | null, message: strin
   });
 
   if (!response.ok) {
-    const error = await response.text();
-    throw new Error(error || "Could not save content to GitHub.");
+    let error = "Could not save content to GitHub.";
+    try {
+      const details = (await response.json()) as { message?: string };
+      error = details.message ? `GitHub rejected the token: ${details.message}` : error;
+    } catch {
+      error = await response.text();
+    }
+    throw new Error(error);
   }
 }
 

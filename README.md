@@ -36,7 +36,7 @@ Set these Vercel Production environment variables:
 - `CONTENT_FILE_PATH`
 - `GITHUB_TOKEN`
 
-`GITHUB_TOKEN` must be a fine-grained GitHub token for `Legend999999/san-profile` with Contents read/write permission. Keep it secret. Do not commit it to the repo.
+`GITHUB_TOKEN` must be a fine-grained GitHub token for `Legend999999/san-profile` with Contents read/write permission. The app also accepts `github_token`, `GITHUB_PAT`, or `GH_TOKEN` if the token was added under one of those names. Keep it secret. Do not commit it to the repo.
 
 ## Supabase Configuration
 
