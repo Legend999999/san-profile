@@ -1,12 +1,10 @@
 import { cookies } from "next/headers";
 import { getSupabaseConfig } from "./config";
-import { isSimpleAdminSession } from "./simple-admin-auth";
 
 type RequestOptions = {
   method?: "GET" | "POST" | "PATCH" | "DELETE";
   body?: unknown;
   token?: string;
-  serviceRole?: boolean;
   prefer?: string;
 };
 
@@ -19,26 +17,20 @@ export async function getSessionToken() {
 
 export async function supabaseRequest<T>(
   path: string,
-  { method = "GET", body, token, serviceRole, prefer }: RequestOptions = {},
+  { method = "GET", body, token, prefer }: RequestOptions = {},
 ): Promise<T> {
   const config = getSupabaseConfig();
   if (!config) {
     throw new SupabaseConfigError("Supabase is not configured.");
   }
 
-  const authToken = serviceRole ? config.serviceRoleKey : token ?? config.anonKey;
-  const resolvedAuthToken = isSimpleAdminSession(authToken)
-    ? config.serviceRoleKey
-    : authToken;
-  if (!resolvedAuthToken) {
-    throw new SupabaseConfigError("The required Supabase server key is missing.");
-  }
+  const authToken = token ?? config.anonKey;
 
   const response = await fetch(`${config.url}${path}`, {
     method,
     headers: {
       apikey: config.anonKey,
-      Authorization: `Bearer ${resolvedAuthToken}`,
+      Authorization: `Bearer ${authToken}`,
       "Content-Type": "application/json",
       ...(prefer ? { Prefer: prefer } : {}),
     },

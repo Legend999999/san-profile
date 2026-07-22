@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { GitHubTokenPanel } from "@/components/admin/GitHubTokenPanel";
 import { logout } from "../actions";
 
 export default function AdminPrivateLayout({ children }: { children: React.ReactNode }) {
@@ -20,7 +19,6 @@ export default function AdminPrivateLayout({ children }: { children: React.React
             <button type="submit">Logout</button>
           </form>
         </nav>
-        <GitHubTokenPanel />
       </aside>
       <main className="admin-main">{children}</main>
     </div>

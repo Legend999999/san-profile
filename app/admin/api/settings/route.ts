@@ -1,11 +1,9 @@
 import { NextResponse } from "next/server";
-import { requireAdminToken, supabaseRequest, SupabaseConfigError } from "@/lib/supabase-rest";
-import { updateContentSettings } from "@/lib/content-store";
+import { requireAdminToken, supabaseRequest } from "@/lib/supabase-rest";
 import type { WebsiteSettings } from "@/lib/types";
 
 export async function PATCH(request: Request) {
   const body = (await request.json()) as Partial<WebsiteSettings>;
-  const githubToken = request.headers.get("x-github-token");
   try {
     const token = await requireAdminToken();
     const rows = await supabaseRequest<WebsiteSettings[]>(
@@ -27,18 +25,11 @@ export async function PATCH(request: Request) {
         prefer: "return=representation",
       },
     );
+    if (!rows[0]) {
+      return new NextResponse("No settings row was updated. Check Supabase RLS and admin_users setup.", { status: 403 });
+    }
     return NextResponse.json(rows[0]);
   } catch (error) {
-    if (error instanceof SupabaseConfigError) {
-      try {
-        return NextResponse.json(await updateContentSettings(body, { token: githubToken }));
-      } catch (contentError) {
-        return new NextResponse(
-          contentError instanceof Error ? contentError.message : "Settings update failed.",
-          { status: 400 },
-        );
-      }
-    }
     return new NextResponse(error instanceof Error ? error.message : "Settings update failed.", { status: 400 });
   }
 }

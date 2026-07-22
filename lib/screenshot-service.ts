@@ -30,19 +30,19 @@ async function captureWithGenericProvider(targetUrl: string) {
   return await response.arrayBuffer();
 }
 
-async function uploadScreenshot(bytes: ArrayBuffer, slug: string) {
+async function uploadScreenshot(bytes: ArrayBuffer, slug: string, token: string) {
   const config = getSupabaseConfig();
-  if (!config?.serviceRoleKey) {
-    throw new Error("Supabase storage service key is not configured.");
+  if (!config) {
+    throw new Error("Supabase is not configured.");
   }
 
   const safeSlug = slug.replace(/[^a-z0-9-]/gi, "-").toLowerCase();
   const fileName = `${safeSlug}-${Date.now()}.png`;
-  const upload = await fetch(`${config.url}/storage/v1/object/screenshots/${fileName}`, {
+  const upload = await fetch(`${config.url}/storage/v1/object/project-images/${fileName}`, {
     method: "POST",
     headers: {
       apikey: config.anonKey,
-      Authorization: `Bearer ${config.serviceRoleKey}`,
+      Authorization: `Bearer ${token}`,
       "Content-Type": "image/png",
       "x-upsert": "true",
     },
@@ -53,10 +53,10 @@ async function uploadScreenshot(bytes: ArrayBuffer, slug: string) {
     throw new Error("Screenshot capture succeeded, but storage upload failed.");
   }
 
-  return `${config.url}/storage/v1/object/public/screenshots/${fileName}`;
+  return `${config.url}/storage/v1/object/public/project-images/${fileName}`;
 }
 
-export async function generateScreenshot(url: string, slug: string): Promise<ScreenshotResult> {
+export async function generateScreenshot(url: string, slug: string, token: string): Promise<ScreenshotResult> {
   const safeUrl = validatePublicWebsiteUrl(url);
   const imageBytes = await captureWithGenericProvider(safeUrl);
   if (!imageBytes) {
@@ -64,6 +64,6 @@ export async function generateScreenshot(url: string, slug: string): Promise<Scr
       screenshotUrl: `https://s.wordpress.com/mshots/v1/${encodeURIComponent(safeUrl)}?w=1400`,
     };
   }
-  const screenshotUrl = await uploadScreenshot(imageBytes, slug);
+  const screenshotUrl = await uploadScreenshot(imageBytes, slug, token);
   return { screenshotUrl };
 }

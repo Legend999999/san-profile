@@ -4,12 +4,12 @@ import { generateScreenshot } from "@/lib/screenshot-service";
 
 export async function POST(request: Request) {
   try {
-    await requireAdminToken();
+    const token = await requireAdminToken();
     const { url, slug } = (await request.json()) as { url?: string; slug?: string };
     if (!url || !slug) {
       return NextResponse.json({ error: "Website URL and slug are required." }, { status: 400 });
     }
-    const result = await generateScreenshot(url, slug);
+    const result = await generateScreenshot(url, slug, token);
     return NextResponse.json(result);
   } catch (error) {
     return NextResponse.json(

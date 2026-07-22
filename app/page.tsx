@@ -2,6 +2,8 @@ import Link from "next/link";
 import { getPublishedProjects, getWebsiteSettings } from "@/lib/data";
 import { ProjectCard } from "@/components/ProjectCard";
 
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const [settings, projects] = await Promise.all([
     getWebsiteSettings(),

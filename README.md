@@ -1,98 +1,154 @@
 # San Portfolio
 
-A premium dark personal portfolio for San, with a public projects site and a protected admin dashboard for managing projects without editing code.
+A Next.js personal portfolio for San with a public project gallery and a Supabase-protected admin dashboard.
 
-## What Is Included
+## Stack
 
-- Public homepage with editable intro, projects, contact links, SEO metadata, sitemap, and robots file.
-- Project preview pages at `/projects/[slug]` with iframe fallback messaging.
-- Admin login at `/admin/login` using either a simple server-side admin credential or Supabase email/password authentication.
-- Protected admin dashboard, projects CRUD, publish/draft, featured status, ordering, and settings editor.
-- GitHub-backed editable content storage for Vercel when Supabase is not configured.
-- Server-side screenshot generation route with URL validation and SSRF protection.
-- Supabase SQL migration with tables, storage bucket, triggers, and row-level security policies.
-- Deployment-ready environment variables for GitHub, Vercel, and Cloudflare-managed domains.
+- Next.js 16, React, TypeScript
+- Plain CSS in `app/globals.css`
+- Supabase Auth for admin login
+- Supabase Postgres for editable settings and projects
+- Supabase Storage for project images
+- Vercel deployment from GitHub
 
-## Local Setup
+## How Data Works
 
-1. Install dependencies with `npm install`.
-2. Copy `.env.example` to `.env.local`.
-3. Fill in GitHub storage values, or Supabase and screenshot provider values.
-4. For GitHub storage, create a fine-grained GitHub token with Contents read/write access to this repository and add it as `GITHUB_TOKEN`.
-5. For Supabase storage, run the SQL in `supabase/migrations/001_initial_schema.sql` inside the Supabase SQL editor.
-6. Set `ADMIN_USERNAME` and `ADMIN_PASSWORD`, or create one administrator in Supabase Auth with email and password.
-7. Start the app with `npm run dev`.
+The public website reads from Supabase:
 
-## Editable Content Without Supabase
+- `public.website_settings` for the site title, owner text, links, and footer.
+- `public.projects` for project cards and project pages.
+- `storage.objects` in the `project-images` bucket for uploaded project images.
 
-On Vercel, the admin dashboard can save projects and website settings to `content/site-data.json` in the GitHub repository.
+Visitors use the Supabase anon key and can only read:
 
-The easiest setup is to sign in to `/admin`, paste a fine-grained GitHub token into the GitHub saving panel, and click Save. The token stays in that browser's local storage and is sent only with admin save/delete requests.
+- published projects where `published = true`
+- website settings
+- public files in the `project-images` bucket
 
-Set these Vercel Production environment variables:
+Admin editing uses the Supabase Auth access token stored in an httpOnly cookie after login. The browser never stores admin passwords, GitHub tokens, service-role keys, or database secrets.
 
-- `ADMIN_USERNAME`
-- `ADMIN_PASSWORD`
-- `GITHUB_REPO`
-- `GITHUB_BRANCH`
-- `CONTENT_FILE_PATH`
-- `GITHUB_TOKEN`
+## Supabase Tables
 
-`GITHUB_TOKEN` must be a fine-grained GitHub token for `Legend999999/san-profile` with Contents read/write permission. The app also accepts `github_token`, `GITHUB_PAT`, or `GH_TOKEN` if the token was added under one of those names. Keep it secret. Do not commit it to the repo.
+### `public.admin_users`
 
-## Supabase Configuration
+Allowlist for accounts that can edit the site.
 
-Create a Supabase project, then add these values to your environment:
+- `user_id uuid primary key`: the Supabase Auth user id for your admin account.
+- `created_at timestamptz`: when the admin was added.
 
-- `NEXT_PUBLIC_SUPABASE_URL`
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-- `SUPABASE_SERVICE_ROLE_KEY`
+Only users listed here pass the `public.is_admin()` RLS check.
 
-The anon key is safe for browser use. The service role key is server-only and is used only for uploading screenshots to Supabase Storage.
+### `public.website_settings`
 
-The included RLS policies allow:
+Stores one row of editable website settings.
 
-- Public users to read only published projects.
-- Public users to read website settings.
-- Authenticated administrators to create, update, and delete projects and settings.
-- Public users to read stored screenshots.
+- `id uuid primary key`
+- `site_title text`
+- `owner_name text`
+- `introduction text`
+- `about_text text`
+- `github_url text`
+- `telegram_url text`
+- `email text`
+- `footer_text text`
+- `updated_at timestamptz`
 
-For a single-admin setup, either set one server-side admin username/password or create only San's admin user in Supabase Auth.
+Visitors can read settings. Only allowlisted admins can insert, update, or delete settings.
 
-## Screenshot Provider
+### `public.projects`
 
-The app uses a reusable screenshot service at `lib/screenshot-service.ts`.
+Stores portfolio projects.
 
-Set:
+- `id uuid primary key`
+- `title text`
+- `slug text unique`
+- `short_description text`
+- `full_description text`
+- `website_url text`
+- `screenshot_url text`: public Supabase Storage URL or generated screenshot URL.
+- `technologies text[]`
+- `category text`
+- `featured boolean`
+- `published boolean`
+- `display_order integer`
+- `created_at timestamptz`
+- `updated_at timestamptz`
 
-- `SCREENSHOT_API_ENDPOINT`
-- `SCREENSHOT_API_KEY`
+Visitors can read only rows where `published = true`. Only allowlisted admins can create, edit, or delete projects.
 
-The provider endpoint should accept the target URL as a `url` query parameter and return a PNG image. The service validates the submitted URL and blocks localhost, private networks, metadata addresses, credentials in URLs, and unsafe protocols before any provider request is made.
+## Supabase Storage
 
-The provider can later be swapped for ScreenshotOne, Cloudflare Browser Rendering, Playwright on a server, or another secure server-side capture service.
+Bucket:
 
-## Vercel Deployment
+- `project-images`
 
-1. Push this project to GitHub.
-2. Import the repository into Vercel.
-3. Add all variables from `.env.example` in Vercel Project Settings.
-4. Set `NEXT_PUBLIC_SITE_URL` to your final domain, such as `https://san.com`.
-5. Make sure the Vercel Build Command is `npm run build` and the Output Directory is `.next`.
-6. Deploy.
+Policies:
 
-## Cloudflare DNS
+- Public users can read images.
+- Allowlisted authenticated admins can upload, update, and delete images.
 
-1. Add the domain to Cloudflare.
-2. Point the root or subdomain to Vercel using Vercel's DNS instructions.
-3. Keep SSL/TLS mode on Full or Full Strict.
-4. After DNS is live, update `NEXT_PUBLIC_SITE_URL`.
+Uploaded files are stored in Supabase Storage. The public URL is saved in `projects.screenshot_url`.
+
+## Environment Variables
+
+Set these in Vercel Production and in `.env.local` for local development:
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://san-profile.vercel.app
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+```
+
+Optional screenshot provider:
+
+```bash
+SCREENSHOT_API_ENDPOINT=https://api.example.com/capture
+SCREENSHOT_API_KEY=your-provider-key
+```
+
+Do not put a Supabase service-role key in frontend code. This app does not require `SUPABASE_SERVICE_ROLE_KEY`.
+
+## Setup Steps
+
+1. Create a Supabase project.
+2. In Supabase SQL Editor, run `supabase/migrations/001_initial_schema.sql`.
+3. In Supabase Auth, create your admin user with email and password.
+4. Copy that user's Auth `id`.
+5. In Supabase SQL Editor, run:
+
+```sql
+insert into public.admin_users (user_id)
+values ('PASTE-YOUR-SUPABASE-AUTH-USER-ID-HERE')
+on conflict (user_id) do nothing;
+```
+
+6. Add the environment variables above to Vercel Project Settings.
+7. Redeploy Vercel.
+8. Visit `/admin/login` and sign in with the Supabase admin email and password.
 
 ## Admin Flow
 
 1. Visit `/admin/login`.
-2. Sign in with the Supabase administrator account.
-3. Add a project with title, URL, descriptions, technologies, category, order, featured, and published status.
-4. Click Generate Screenshot.
-5. Save and publish the project.
-6. View it on the homepage and open its preview page.
+2. Sign in with your Supabase admin email and password.
+3. Edit website settings in `/admin/settings`.
+4. Add or edit projects in `/admin/projects`.
+5. Upload a project image, or generate a screenshot if a screenshot provider is configured.
+6. Save the project.
+7. If `published` is checked, visitors see it immediately on the public site.
+
+## Important Files
+
+- `app/page.tsx`: public homepage.
+- `app/projects/[slug]/page.tsx`: public project detail page.
+- `app/admin/login/page.tsx`: Supabase Auth login page.
+- `app/admin/(private)/page.tsx`: admin dashboard.
+- `app/admin/(private)/projects`: project management pages.
+- `app/admin/(private)/settings/page.tsx`: settings management page.
+- `app/admin/api/projects`: project create/update/delete API routes.
+- `app/admin/api/settings/route.ts`: website settings update route.
+- `app/admin/api/uploads/route.ts`: Supabase Storage image upload route.
+- `app/admin/api/screenshots/route.ts`: screenshot generation route.
+- `lib/data.ts`: public and admin Supabase reads.
+- `lib/supabase-rest.ts`: Supabase REST helper using anon or authenticated user tokens.
+- `lib/screenshot-service.ts`: screenshot provider and authenticated Storage upload.
+- `supabase/migrations/001_initial_schema.sql`: database, RLS, and storage setup.

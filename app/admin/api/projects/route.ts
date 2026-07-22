@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import { requireAdminToken, supabaseRequest, SupabaseConfigError } from "@/lib/supabase-rest";
-import { createContentProject } from "@/lib/content-store";
+import { requireAdminToken, supabaseRequest } from "@/lib/supabase-rest";
 import { validatePublicWebsiteUrl } from "@/lib/url-security";
 import type { Project, ProjectInput } from "@/lib/types";
 
@@ -21,7 +20,6 @@ function normalizeProject(input: ProjectInput) {
 export async function POST(request: Request) {
   const input = (await request.json()) as ProjectInput;
   const projectInput = normalizeProject(input);
-  const githubToken = request.headers.get("x-github-token");
   try {
     const token = await requireAdminToken();
     const rows = await supabaseRequest<Project[]>("/rest/v1/projects", {
@@ -32,17 +30,6 @@ export async function POST(request: Request) {
     });
     return NextResponse.json(rows[0], { status: 201 });
   } catch (error) {
-    if (error instanceof SupabaseConfigError) {
-      try {
-        const project = await createContentProject(projectInput, { token: githubToken });
-        return NextResponse.json(project, { status: 201 });
-      } catch (contentError) {
-        return new NextResponse(
-          contentError instanceof Error ? contentError.message : "Project creation failed.",
-          { status: 400 },
-        );
-      }
-    }
     return new NextResponse(error instanceof Error ? error.message : "Project creation failed.", { status: 400 });
   }
 }

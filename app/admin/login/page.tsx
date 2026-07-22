@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import Link from "next/link";
 import { getSupabaseConfig } from "@/lib/config";
-import { simpleAdminToken, verifySimpleAdminLogin } from "@/lib/simple-admin-auth";
 
 async function login(formData: FormData) {
   "use server";
@@ -11,17 +11,6 @@ async function login(formData: FormData) {
   const next = String(formData.get("next") ?? "/admin");
   const store = await cookies();
   const secureCookie = process.env.NODE_ENV === "production";
-
-  if (verifySimpleAdminLogin(username, password)) {
-    store.set("san-admin-access-token", simpleAdminToken, {
-      httpOnly: true,
-      sameSite: "lax",
-      secure: secureCookie,
-      maxAge: 60 * 60 * 24 * 30,
-      path: "/",
-    });
-    redirect(next.startsWith("/admin") ? next : "/admin");
-  }
 
   const config = getSupabaseConfig();
 
@@ -124,21 +113,21 @@ export default async function AdminLogin({
               </div>
               <span className="login-lock">Secure</span>
             </div>
-            <p className="muted">Use your admin username and password.</p>
+            <p className="muted">Use your Supabase admin email and password.</p>
             {params.error ? (
               <p className="notice login-notice">{decodeURIComponent(params.error)}</p>
             ) : null}
             <form action={login} className="login-form">
               <input type="hidden" name="next" value={params.next ?? "/admin"} />
               <div className="field">
-                <label htmlFor="username">Username</label>
+                <label htmlFor="username">Email</label>
                 <input
                   className="input"
                   id="username"
                   name="username"
-                  type="text"
+                  type="email"
                   autoComplete="username"
-                  placeholder="adminsan"
+                  placeholder="admin@example.com"
                   required
                 />
               </div>
@@ -160,7 +149,7 @@ export default async function AdminLogin({
             </form>
             <div className="login-footnote">
               <span>Protected admin area</span>
-              <a href="/">Back to portfolio</a>
+              <Link href="/">Back to portfolio</Link>
             </div>
           </section>
         </div>

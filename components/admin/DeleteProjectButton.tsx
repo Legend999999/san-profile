@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { getGitHubTokenHeaders } from "@/components/admin/GitHubTokenPanel";
 
 export function DeleteProjectButton({ id, title }: { id: string; title: string }) {
   const [busy, setBusy] = useState(false);
@@ -13,10 +12,7 @@ export function DeleteProjectButton({ id, title }: { id: string; title: string }
       return;
     }
     setBusy(true);
-    const response = await fetch(`/admin/api/projects/${id}`, {
-      method: "DELETE",
-      headers: getGitHubTokenHeaders(),
-    });
+    const response = await fetch(`/admin/api/projects/${id}`, { method: "DELETE" });
     setBusy(false);
     if (!response.ok) {
       alert("Project deletion failed.");

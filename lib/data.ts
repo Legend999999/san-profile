@@ -1,12 +1,5 @@
 import { fallbackSettings } from "./config";
 import { supabaseRequest, SupabaseConfigError, getSessionToken } from "./supabase-rest";
-import {
-  getContentAllProjects,
-  getContentProjectById,
-  getContentProjectBySlug,
-  getContentPublishedProjects,
-  getContentSettings,
-} from "./content-store";
 import type { Project, WebsiteSettings } from "./types";
 
 const sampleProjects: Project[] = [
@@ -36,8 +29,7 @@ export async function getPublishedProjects() {
     );
   } catch (error) {
     if (error instanceof SupabaseConfigError) {
-      const projects = await getContentPublishedProjects();
-      return projects.length > 0 ? projects : sampleProjects;
+      return sampleProjects;
     }
     return [];
   }
@@ -53,11 +45,8 @@ export async function getAllProjects() {
       "/rest/v1/projects?select=*&order=display_order.asc,created_at.desc",
       { token },
     );
-  } catch (error) {
-    if (error instanceof SupabaseConfigError) {
-      return getContentAllProjects();
-    }
-    return getContentAllProjects();
+  } catch {
+    return [];
   }
 }
 
@@ -69,11 +58,7 @@ export async function getProjectBySlug(slug: string) {
     return rows[0] ?? sampleProjects.find((project) => project.slug === slug) ?? null;
   } catch (error) {
     if (error instanceof SupabaseConfigError) {
-      return (
-        (await getContentProjectBySlug(slug)) ??
-        sampleProjects.find((project) => project.slug === slug) ??
-        null
-      );
+      return sampleProjects.find((project) => project.slug === slug) ?? null;
     }
     return null;
   }
@@ -90,11 +75,8 @@ export async function getAdminProjectById(id: string) {
       { token },
     );
     return rows[0] ?? null;
-  } catch (error) {
-    if (error instanceof SupabaseConfigError) {
-      return getContentProjectById(id);
-    }
-    return getContentProjectById(id);
+  } catch {
+    return null;
   }
 }
 
@@ -105,6 +87,6 @@ export async function getWebsiteSettings(): Promise<WebsiteSettings> {
     );
     return rows[0] ?? fallbackSettings;
   } catch {
-    return getContentSettings().catch(() => fallbackSettings);
+    return fallbackSettings;
   }
 }

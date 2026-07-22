@@ -1,8 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { getGitHubTokenHeaders } from "@/components/admin/GitHubTokenPanel";
+import { useRef, useState } from "react";
 import type { Project } from "@/lib/types";
 
 function slugify(value: string) {
@@ -18,6 +17,8 @@ export function ProjectForm({ project }: { project?: Project | null }) {
   const [message, setMessage] = useState("");
   const [busy, setBusy] = useState(false);
   const [generating, setGenerating] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   async function submit(formData: FormData) {
     setBusy(true);
@@ -41,7 +42,7 @@ export function ProjectForm({ project }: { project?: Project | null }) {
 
     const response = await fetch(project ? `/admin/api/projects/${project.id}` : "/admin/api/projects", {
       method: project ? "PATCH" : "POST",
-      headers: { "Content-Type": "application/json", ...getGitHubTokenHeaders() },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
     });
     setBusy(false);
@@ -73,6 +74,34 @@ export function ProjectForm({ project }: { project?: Project | null }) {
     }
     setScreenshotUrl(result.screenshotUrl);
     setMessage("Screenshot generated.");
+  }
+
+  async function uploadImage() {
+    const file = fileInputRef.current?.files?.[0];
+    if (!file) {
+      setMessage("Choose an image first.");
+      return;
+    }
+
+    setUploading(true);
+    setMessage("Uploading image...");
+    const formData = new FormData();
+    formData.set("image", file);
+    formData.set("slug", slug || slugify(title) || "project");
+
+    const response = await fetch("/admin/api/uploads", {
+      method: "POST",
+      body: formData,
+    });
+    const result = (await response.json()) as { imageUrl?: string; error?: string };
+    setUploading(false);
+    if (!response.ok || !result.imageUrl) {
+      setMessage(result.error ?? "Image upload failed.");
+      return;
+    }
+
+    setScreenshotUrl(result.imageUrl);
+    setMessage("Image uploaded.");
   }
 
   return (
@@ -121,10 +150,14 @@ export function ProjectForm({ project }: { project?: Project | null }) {
         </div>
       </div>
       <div className="field" style={{ marginTop: 16 }}>
-        <label htmlFor="screenshot_url">Screenshot URL</label>
+        <label htmlFor="screenshot_url">Project image URL</label>
         <input className="input" id="screenshot_url" value={screenshotUrl} onChange={(event) => setScreenshotUrl(event.target.value)} />
       </div>
       <div className="hero-actions">
+        <input ref={fileInputRef} accept="image/png,image/jpeg,image/webp,image/gif" className="input file-input" type="file" />
+        <button className="button" disabled={uploading} onClick={uploadImage} type="button">
+          {uploading ? "Uploading image..." : "Upload Image"}
+        </button>
         <button className="button" disabled={generating || !websiteUrl} onClick={generateShot} type="button">
           {generating ? "Generating screenshot..." : project?.screenshot_url ? "Regenerate Screenshot" : "Generate Screenshot"}
         </button>

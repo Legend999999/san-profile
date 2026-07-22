@@ -23,6 +23,5 @@ export function getSupabaseConfig() {
   return {
     url: url.replace(/\/$/, ""),
     anonKey,
-    serviceRoleKey: process.env.SUPABASE_SERVICE_ROLE_KEY,
   };
 }
