@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import type { Project } from "@/lib/types";
 
@@ -16,8 +17,8 @@ export function ProjectCard({ project }: { project: Project }) {
             <img src={project.screenshot_url} alt={`${project.title} screenshot`} />
           ) : (
             <div className="fallback-shot">
+              <span>{project.category}</span>
               <strong>{project.title}</strong>
-              <span className="muted">Screenshot will appear after generation.</span>
             </div>
           )}
         </div>
