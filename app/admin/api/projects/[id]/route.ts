@@ -22,6 +22,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   const { id } = await params;
   const input = (await request.json()) as ProjectInput;
   const projectInput = normalizeProject(input);
+  const githubToken = request.headers.get("x-github-token");
   try {
     const token = await requireAdminToken();
     const rows = await supabaseRequest<Project[]>(
@@ -37,7 +38,7 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   } catch (error) {
     if (error instanceof SupabaseConfigError) {
       try {
-        return NextResponse.json(await updateContentProject(id, projectInput));
+        return NextResponse.json(await updateContentProject(id, projectInput, { token: githubToken }));
       } catch (contentError) {
         return new NextResponse(
           contentError instanceof Error ? contentError.message : "Project update failed.",
@@ -49,8 +50,9 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
   }
 }
 
-export async function DELETE(_request: Request, { params }: { params: Promise<{ id: string }> }) {
+export async function DELETE(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
+  const githubToken = request.headers.get("x-github-token");
   try {
     const token = await requireAdminToken();
     await supabaseRequest(`/rest/v1/projects?id=eq.${encodeURIComponent(id)}`, {
@@ -61,7 +63,7 @@ export async function DELETE(_request: Request, { params }: { params: Promise<{ 
   } catch (error) {
     if (error instanceof SupabaseConfigError) {
       try {
-        await deleteContentProject(id);
+        await deleteContentProject(id, { token: githubToken });
         return new NextResponse(null, { status: 204 });
       } catch (contentError) {
         return new NextResponse(

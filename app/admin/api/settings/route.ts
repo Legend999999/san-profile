@@ -5,6 +5,7 @@ import type { WebsiteSettings } from "@/lib/types";
 
 export async function PATCH(request: Request) {
   const body = (await request.json()) as Partial<WebsiteSettings>;
+  const githubToken = request.headers.get("x-github-token");
   try {
     const token = await requireAdminToken();
     const rows = await supabaseRequest<WebsiteSettings[]>(
@@ -30,7 +31,7 @@ export async function PATCH(request: Request) {
   } catch (error) {
     if (error instanceof SupabaseConfigError) {
       try {
-        return NextResponse.json(await updateContentSettings(body));
+        return NextResponse.json(await updateContentSettings(body, { token: githubToken }));
       } catch (contentError) {
         return new NextResponse(
           contentError instanceof Error ? contentError.message : "Settings update failed.",

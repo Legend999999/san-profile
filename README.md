@@ -27,6 +27,8 @@ A premium dark personal portfolio for San, with a public projects site and a pro
 
 On Vercel, the admin dashboard can save projects and website settings to `content/site-data.json` in the GitHub repository.
 
+The easiest setup is to sign in to `/admin`, paste a fine-grained GitHub token into the GitHub saving panel, and click Save. The token stays in that browser's local storage and is sent only with admin save/delete requests.
+
 Set these Vercel Production environment variables:
 
 - `ADMIN_USERNAME`

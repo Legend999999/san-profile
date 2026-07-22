@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { getGitHubTokenHeaders } from "@/components/admin/GitHubTokenPanel";
 import type { WebsiteSettings } from "@/lib/types";
 
 export function SettingsForm({ settings }: { settings: WebsiteSettings }) {
@@ -15,7 +16,7 @@ export function SettingsForm({ settings }: { settings: WebsiteSettings }) {
     const payload = Object.fromEntries(formData.entries());
     const response = await fetch("/admin/api/settings", {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", ...getGitHubTokenHeaders() },
       body: JSON.stringify(payload),
     });
     setBusy(false);

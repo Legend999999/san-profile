@@ -21,6 +21,7 @@ function normalizeProject(input: ProjectInput) {
 export async function POST(request: Request) {
   const input = (await request.json()) as ProjectInput;
   const projectInput = normalizeProject(input);
+  const githubToken = request.headers.get("x-github-token");
   try {
     const token = await requireAdminToken();
     const rows = await supabaseRequest<Project[]>("/rest/v1/projects", {
@@ -33,7 +34,7 @@ export async function POST(request: Request) {
   } catch (error) {
     if (error instanceof SupabaseConfigError) {
       try {
-        const project = await createContentProject(projectInput);
+        const project = await createContentProject(projectInput, { token: githubToken });
         return NextResponse.json(project, { status: 201 });
       } catch (contentError) {
         return new NextResponse(

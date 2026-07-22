@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { getGitHubTokenHeaders } from "@/components/admin/GitHubTokenPanel";
 import type { Project } from "@/lib/types";
 
 function slugify(value: string) {
@@ -40,7 +41,7 @@ export function ProjectForm({ project }: { project?: Project | null }) {
 
     const response = await fetch(project ? `/admin/api/projects/${project.id}` : "/admin/api/projects", {
       method: project ? "PATCH" : "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", ...getGitHubTokenHeaders() },
       body: JSON.stringify(payload),
     });
     setBusy(false);
