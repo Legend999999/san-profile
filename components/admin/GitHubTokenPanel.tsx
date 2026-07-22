@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const storageKey = "san-admin-github-token";
 
-export function getGitHubTokenHeaders() {
+export function getGitHubTokenHeaders(): Record<string, string> {
   if (typeof window === "undefined") return {};
   const token = window.localStorage.getItem(storageKey)?.trim();
   return token ? { "X-GitHub-Token": token } : {};
