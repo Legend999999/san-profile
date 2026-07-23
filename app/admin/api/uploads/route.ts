@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     const token = await requireAdminToken();
     const config = getSupabaseConfig();
     if (!config) {
-      throw new SupabaseConfigError("Supabase is not configured.");
+      throw new SupabaseConfigError("Supabase ڕێک نەخراوە.");
     }
 
     const formData = await request.formData();
@@ -24,13 +24,13 @@ export async function POST(request: Request) {
     const slug = String(formData.get("slug") ?? "project");
 
     if (!(file instanceof File)) {
-      return NextResponse.json({ error: "Choose an image to upload." }, { status: 400 });
+      return NextResponse.json({ error: "وێنەیەک بۆ بارکردن هەڵبژێرە." }, { status: 400 });
     }
     if (!allowedTypes.has(file.type)) {
-      return NextResponse.json({ error: "Use PNG, JPEG, WebP, or GIF images only." }, { status: 400 });
+      return NextResponse.json({ error: "تەنها وێنەی PNG, JPEG, WebP یان GIF بەکاربهێنە." }, { status: 400 });
     }
     if (file.size > maxImageBytes) {
-      return NextResponse.json({ error: "Image must be 5 MB or smaller." }, { status: 400 });
+      return NextResponse.json({ error: "قەبارەی وێنە دەبێت 5 MB یان کەمتر بێت." }, { status: 400 });
     }
 
     const fileName = safeFileName(slug, file);
@@ -47,7 +47,7 @@ export async function POST(request: Request) {
 
     if (!upload.ok) {
       const message = await upload.text();
-      return NextResponse.json({ error: message || "Image upload failed." }, { status: 400 });
+      return NextResponse.json({ error: message || "بارکردنی وێنە سەرکەوتوو نەبوو." }, { status: 400 });
     }
 
     return NextResponse.json({
@@ -55,7 +55,7 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : "Image upload failed." },
+      { error: error instanceof Error ? error.message : "بارکردنی وێنە سەرکەوتوو نەبوو." },
       { status: 400 },
     );
   }

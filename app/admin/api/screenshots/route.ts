@@ -7,13 +7,13 @@ export async function POST(request: Request) {
     const token = await requireAdminToken();
     const { url, slug } = (await request.json()) as { url?: string; slug?: string };
     if (!url || !slug) {
-      return NextResponse.json({ error: "Website URL and slug are required." }, { status: 400 });
+      return NextResponse.json({ error: "URL ـی وێبسایت و slug پێویستن." }, { status: 400 });
     }
     const result = await generateScreenshot(url, slug, token);
     return NextResponse.json(result);
   } catch (error) {
     return NextResponse.json(
-      { error: error instanceof Error ? error.message : "Screenshot generation failed." },
+      { error: error instanceof Error ? error.message : "دروستکردنی screenshot سەرکەوتوو نەبوو." },
       { status: 400 },
     );
   }

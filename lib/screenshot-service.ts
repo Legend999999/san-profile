@@ -24,7 +24,7 @@ async function captureWithGenericProvider(targetUrl: string) {
   });
 
   if (!response.ok) {
-    throw new Error("The screenshot provider could not capture this website.");
+    throw new Error("دابینکەری screenshot نەیتوانی ئەم وێبسایتە وەربگرێت.");
   }
 
   return await response.arrayBuffer();
@@ -33,7 +33,7 @@ async function captureWithGenericProvider(targetUrl: string) {
 async function uploadScreenshot(bytes: ArrayBuffer, slug: string, token: string) {
   const config = getSupabaseConfig();
   if (!config) {
-    throw new Error("Supabase is not configured.");
+    throw new Error("Supabase ڕێک نەخراوە.");
   }
 
   const safeSlug = slug.replace(/[^a-z0-9-]/gi, "-").toLowerCase();
@@ -50,7 +50,7 @@ async function uploadScreenshot(bytes: ArrayBuffer, slug: string, token: string)
   });
 
   if (!upload.ok) {
-    throw new Error("Screenshot capture succeeded, but storage upload failed.");
+    throw new Error("وەرگرتنی screenshot سەرکەوتوو بوو، بەڵام بارکردن بۆ Storage سەرکەوتوو نەبوو.");
   }
 
   return `${config.url}/storage/v1/object/public/project-images/${fileName}`;

@@ -21,7 +21,7 @@ export async function supabaseRequest<T>(
 ): Promise<T> {
   const config = getSupabaseConfig();
   if (!config) {
-    throw new SupabaseConfigError("Supabase is not configured.");
+    throw new SupabaseConfigError("Supabase ڕێک نەخراوە.");
   }
 
   const authToken = token ?? config.anonKey;
@@ -40,7 +40,7 @@ export async function supabaseRequest<T>(
 
   if (!response.ok) {
     const message = await response.text();
-    throw new Error(message || `Supabase request failed with ${response.status}`);
+    throw new Error(message || `داواکاری Supabase سەرکەوتوو نەبوو بە دۆخی ${response.status}`);
   }
 
   if (response.status === 204) {
@@ -53,7 +53,7 @@ export async function supabaseRequest<T>(
 export async function requireAdminToken() {
   const token = await getSessionToken();
   if (!token) {
-    throw new Error("You must be signed in.");
+    throw new Error("پێویستە سەرەتا بچیتە ژوورەوە.");
   }
   return token;
 }

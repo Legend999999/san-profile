@@ -50,7 +50,7 @@ export function ProjectForm({ project }: { project?: Project | null }) {
       setMessage(await response.text());
       return;
     }
-    setMessage(project ? "Project updated." : "Project created.");
+    setMessage(project ? "پڕۆژەکە نوێکرایەوە." : "پڕۆژەکە دروستکرا.");
     router.refresh();
     if (!project) {
       const saved = await response.json();
@@ -60,7 +60,7 @@ export function ProjectForm({ project }: { project?: Project | null }) {
 
   async function generateShot() {
     setGenerating(true);
-    setMessage("Generating screenshot...");
+    setMessage("لە دروستکردنی screenshot دایە...");
     const response = await fetch("/admin/api/screenshots", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -69,22 +69,22 @@ export function ProjectForm({ project }: { project?: Project | null }) {
     const result = await response.json();
     setGenerating(false);
     if (!response.ok) {
-      setMessage(result.error ?? "Screenshot generation failed.");
+      setMessage(result.error ?? "دروستکردنی screenshot سەرکەوتوو نەبوو.");
       return;
     }
     setScreenshotUrl(result.screenshotUrl);
-    setMessage("Screenshot generated.");
+    setMessage("screenshot دروستکرا.");
   }
 
   async function uploadImage() {
     const file = fileInputRef.current?.files?.[0];
     if (!file) {
-      setMessage("Choose an image first.");
+      setMessage("سەرەتا وێنەیەک هەڵبژێرە.");
       return;
     }
 
     setUploading(true);
-    setMessage("Uploading image...");
+    setMessage("لە بارکردنی وێنەدایە...");
     const formData = new FormData();
     formData.set("image", file);
     formData.set("slug", slug || slugify(title) || "project");
@@ -96,12 +96,12 @@ export function ProjectForm({ project }: { project?: Project | null }) {
     const result = (await response.json()) as { imageUrl?: string; error?: string };
     setUploading(false);
     if (!response.ok || !result.imageUrl) {
-      setMessage(result.error ?? "Image upload failed.");
+      setMessage(result.error ?? "بارکردنی وێنە سەرکەوتوو نەبوو.");
       return;
     }
 
     setScreenshotUrl(result.imageUrl);
-    setMessage("Image uploaded.");
+    setMessage("وێنەکە بارکرا.");
   }
 
   return (
@@ -109,7 +109,7 @@ export function ProjectForm({ project }: { project?: Project | null }) {
       {message ? <p className="notice">{message}</p> : null}
       <div className="form-grid">
         <div className="field">
-          <label htmlFor="title">Title</label>
+          <label htmlFor="title">ناونیشان</label>
           <input className="input" id="title" value={title} onChange={(event) => {
             setTitle(event.target.value);
             if (!project) setSlug(slugify(event.target.value));
@@ -120,54 +120,54 @@ export function ProjectForm({ project }: { project?: Project | null }) {
           <input className="input" id="slug" value={slug} onChange={(event) => setSlug(slugify(event.target.value))} required />
         </div>
         <div className="field">
-          <label htmlFor="website_url">Website URL</label>
+          <label htmlFor="website_url">URL ـی وێبسایت</label>
           <input className="input" id="website_url" value={websiteUrl} onChange={(event) => setWebsiteUrl(event.target.value)} required />
         </div>
         <div className="field">
-          <label htmlFor="category">Category</label>
+          <label htmlFor="category">پۆل</label>
           <select className="select" id="category" name="category" defaultValue={project?.category ?? "Websites"}>
-            <option>Websites</option>
-            <option>Bots</option>
-            <option>Tools</option>
-            <option>Designs</option>
+            <option value="Websites">وێبسایتەکان</option>
+            <option value="Bots">بۆتەکان</option>
+            <option value="Tools">ئامرازەکان</option>
+            <option value="Designs">دیزاینەکان</option>
           </select>
         </div>
         <div className="field">
-          <label htmlFor="short_description">Short description</label>
+          <label htmlFor="short_description">کورتەی پڕۆژە</label>
           <textarea className="textarea" id="short_description" name="short_description" defaultValue={project?.short_description ?? ""} required />
         </div>
         <div className="field">
-          <label htmlFor="full_description">Full description</label>
+          <label htmlFor="full_description">وردەکاری پڕۆژە</label>
           <textarea className="textarea" id="full_description" name="full_description" defaultValue={project?.full_description ?? ""} />
         </div>
         <div className="field">
-          <label htmlFor="technologies">Technologies</label>
+          <label htmlFor="technologies">تەکنەلۆژیاکان</label>
           <input className="input" id="technologies" name="technologies" defaultValue={project?.technologies.join(", ") ?? ""} placeholder="Next.js, TypeScript, Tailwind CSS" />
         </div>
         <div className="field">
-          <label htmlFor="display_order">Display order</label>
+          <label htmlFor="display_order">ڕیزی پیشاندان</label>
           <input className="input" id="display_order" name="display_order" type="number" defaultValue={project?.display_order ?? 0} />
         </div>
       </div>
       <div className="field" style={{ marginTop: 16 }}>
-        <label htmlFor="screenshot_url">Project image URL</label>
+        <label htmlFor="screenshot_url">URL ـی وێنەی پڕۆژە</label>
         <input className="input" id="screenshot_url" value={screenshotUrl} onChange={(event) => setScreenshotUrl(event.target.value)} />
       </div>
       <div className="hero-actions">
         <input ref={fileInputRef} accept="image/png,image/jpeg,image/webp,image/gif" className="input file-input" type="file" />
         <button className="button" disabled={uploading} onClick={uploadImage} type="button">
-          {uploading ? "Uploading image..." : "Upload Image"}
+          {uploading ? "لە بارکردنی وێنەدایە..." : "بارکردنی وێنە"}
         </button>
         <button className="button" disabled={generating || !websiteUrl} onClick={generateShot} type="button">
-          {generating ? "Generating screenshot..." : project?.screenshot_url ? "Regenerate Screenshot" : "Generate Screenshot"}
+          {generating ? "لە دروستکردنی screenshot دایە..." : project?.screenshot_url ? "دووبارە دروستکردنی screenshot" : "دروستکردنی screenshot"}
         </button>
       </div>
       <div className="switch-row" style={{ marginTop: 16 }}>
-        <label className="checkbox"><input name="published" type="checkbox" defaultChecked={project?.published ?? false} /> Published</label>
-        <label className="checkbox"><input name="featured" type="checkbox" defaultChecked={project?.featured ?? false} /> Featured</label>
+        <label className="checkbox"><input name="published" type="checkbox" defaultChecked={project?.published ?? false} /> بڵاوکراوە</label>
+        <label className="checkbox"><input name="featured" type="checkbox" defaultChecked={project?.featured ?? false} /> تایبەت</label>
       </div>
       <div className="hero-actions">
-        <button className="button primary" disabled={busy} type="submit">{busy ? "Saving..." : "Save Project"}</button>
+        <button className="button primary" disabled={busy} type="submit">{busy ? "لە پاشەکەوتکردندایە..." : "پاشەکەوتکردنی پڕۆژە"}</button>
       </div>
     </form>
   );

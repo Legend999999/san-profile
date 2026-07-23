@@ -5,8 +5,8 @@ export default function NewProject() {
     <>
       <div className="admin-topbar">
         <div>
-          <p className="eyebrow">Add work</p>
-          <h1>New Project</h1>
+          <p className="eyebrow">زیادکردنی کار</p>
+          <h1>پڕۆژەی نوێ</h1>
         </div>
       </div>
       <ProjectForm />

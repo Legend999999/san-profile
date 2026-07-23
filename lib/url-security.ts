@@ -21,11 +21,11 @@ export function validatePublicWebsiteUrl(value: string) {
   try {
     url = new URL(value);
   } catch {
-    throw new Error("Enter a valid website URL.");
+    throw new Error("URL ـی وێبسایتێکی دروست بنووسە.");
   }
 
   if (!["https:", "http:"].includes(url.protocol)) {
-    throw new Error("Only http and https website URLs are allowed.");
+    throw new Error("تەنها URL ـی http و https ڕێگەپێدراون.");
   }
 
   const hostname = url.hostname.toLowerCase();
@@ -37,7 +37,7 @@ export function validatePublicWebsiteUrl(value: string) {
     hostname === "169.254.169.254" ||
     isPrivateIPv4(hostname)
   ) {
-    throw new Error("Internal, localhost, private network, and metadata URLs are blocked.");
+    throw new Error("URL ـی ناوخۆیی، localhost، تۆڕی تایبەت و metadata بلۆک کراون.");
   }
 
   url.username = "";

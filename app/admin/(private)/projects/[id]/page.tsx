@@ -13,7 +13,7 @@ export default async function EditProject({ params }: { params: Promise<{ id: st
     <>
       <div className="admin-topbar">
         <div>
-          <p className="eyebrow">Edit work</p>
+          <p className="eyebrow">دەستکاری پڕۆژە</p>
           <h1>{project.title}</h1>
         </div>
       </div>

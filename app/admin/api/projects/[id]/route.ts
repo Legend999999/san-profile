@@ -33,11 +33,11 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
       },
     );
     if (!rows[0]) {
-      return new NextResponse("No project row was updated. Check Supabase RLS and admin_users setup.", { status: 403 });
+      return new NextResponse("هیچ ڕیزی پڕۆژە نوێ نەکرایەوە. RLS و admin_users لە Supabase بپشکنە.", { status: 403 });
     }
     return NextResponse.json(rows[0]);
   } catch (error) {
-    return new NextResponse(error instanceof Error ? error.message : "Project update failed.", { status: 400 });
+    return new NextResponse(error instanceof Error ? error.message : "نوێکردنەوەی پڕۆژە سەرکەوتوو نەبوو.", { status: 400 });
   }
 }
 
@@ -51,6 +51,6 @@ export async function DELETE(request: Request, { params }: { params: Promise<{ i
     });
     return new NextResponse(null, { status: 204 });
   } catch (error) {
-    return new NextResponse(error instanceof Error ? error.message : "Project deletion failed.", { status: 400 });
+    return new NextResponse(error instanceof Error ? error.message : "سڕینەوەی پڕۆژە سەرکەوتوو نەبوو.", { status: 400 });
   }
 }

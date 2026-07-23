@@ -15,7 +15,7 @@ async function login(formData: FormData) {
   const config = getSupabaseConfig();
 
   if (!config) {
-    return redirect("/admin/login?error=Invalid%20username%20or%20password");
+    return redirect("/admin/login?error=%D8%A6%DB%8C%D9%85%DB%95%DB%8C%DA%B5%20%DB%8C%D8%A7%D9%86%20%D9%88%D8%B4%DB%95%DB%8C%20%D9%86%D9%87%DB%8E%D9%86%DB%8C%20%D9%87%DB%95%DA%B5%DB%95%DB%8C%DB%95");
   }
 
   const response = await fetch(`${config.url}/auth/v1/token?grant_type=password`, {
@@ -29,7 +29,7 @@ async function login(formData: FormData) {
   });
 
   if (!response.ok) {
-    redirect("/admin/login?error=Invalid%20email%20or%20password");
+    redirect("/admin/login?error=%D8%A6%DB%8C%D9%85%DB%95%DB%8C%DA%B5%20%DB%8C%D8%A7%D9%86%20%D9%88%D8%B4%DB%95%DB%8C%20%D9%86%D9%87%DB%8E%D9%86%DB%8C%20%D9%87%DB%95%DA%B5%DB%95%DB%8C%DB%95");
   }
 
   const session = (await response.json()) as {
@@ -66,22 +66,22 @@ export default async function AdminLogin({
     <main className="login-shell">
       <div className="login-aura login-aura-one" />
       <div className="login-aura login-aura-two" />
-      <section className="login-stage" aria-label="San admin sign in">
+      <section className="login-stage" aria-label="چوونەژوورەوەی بەڕێوەبەری کورد وێب">
         <div className="login-copy">
           <div className="brand login-brand">
-            <span className="brand-mark">S</span>
-            <span>San Portfolio</span>
+            <span className="brand-mark">ک</span>
+            <span>کورد وێب</span>
           </div>
-          <p className="eyebrow">Private workspace</p>
-          <h1>Manage every project from one calm control room.</h1>
+          <p className="eyebrow">شوێنی تایبەتی بەڕێوەبردن</p>
+          <h1>هەموو پڕۆژە و ناوەڕۆکەکان لە داشبۆردێکی ڕێکوپێک بەڕێوەببە.</h1>
           <p className="lead">
-            Add websites, publish featured work, refresh screenshots, and tune the
-            public portfolio without touching code.
+            پڕۆژە زیاد بکە، وێنە بار بکە، Published دابنێ و
+            گۆڕانکارییەکانی ماڵپەڕەکەت پاشەکەوت بکە.
           </p>
-          <div className="login-metrics" aria-label="Admin features">
-            <span>Projects</span>
-            <span>Settings</span>
-            <span>Publishing</span>
+          <div className="login-metrics" aria-label="تایبەتمەندییەکانی داشبۆرد">
+            <span>پڕۆژەکان</span>
+            <span>ڕێکخستنەکان</span>
+            <span>بڵاوکردنەوە</span>
           </div>
           <div className="login-preview" aria-hidden="true">
             <div className="login-preview-top">
@@ -91,8 +91,8 @@ export default async function AdminLogin({
             </div>
             <div className="login-preview-body">
               <div>
-                <small>Featured project</small>
-                <strong>Modern Website</strong>
+                <small>پڕۆژەی تایبەت</small>
+                <strong>وێبسایتی مۆدێرن</strong>
               </div>
               <div className="login-preview-graph">
                 <span />
@@ -108,12 +108,12 @@ export default async function AdminLogin({
           <section className="form-panel login-card">
             <div className="login-card-head">
               <div>
-                <p className="muted">Welcome back</p>
-                <h2>Sign in</h2>
+                <p className="muted">بەخێربێیتەوە</p>
+                <h2>چوونەژوورەوە</h2>
               </div>
-              <span className="login-lock">Secure</span>
+              <span className="login-lock">پارێزراو</span>
             </div>
-            <p className="muted">Use your Supabase admin email and password.</p>
+            <p className="muted">بە Email و وشەی نهێنی Supabase بچۆ ژوورەوە.</p>
             {params.error ? (
               <p className="notice login-notice">{decodeURIComponent(params.error)}</p>
             ) : null}
@@ -132,24 +132,24 @@ export default async function AdminLogin({
                 />
               </div>
               <div className="field">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">وشەی نهێنی</label>
                 <input
                   className="input"
                   id="password"
                   name="password"
                   type="password"
                   autoComplete="current-password"
-                  placeholder="Enter password"
+                  placeholder="وشەی نهێنی بنووسە"
                   required
                 />
               </div>
               <button className="button primary login-submit" type="submit">
-                Sign in to dashboard
+                چوونەژوورەوە بۆ داشبۆرد
               </button>
             </form>
             <div className="login-footnote">
-              <span>Protected admin area</span>
-              <Link href="/">Back to portfolio</Link>
+              <span>ناوچەی پارێزراوی بەڕێوەبەر</span>
+              <Link href="/">گەڕانەوە بۆ ماڵپەڕ</Link>
             </div>
           </section>
         </div>

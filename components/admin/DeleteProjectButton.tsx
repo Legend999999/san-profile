@@ -8,23 +8,23 @@ export function DeleteProjectButton({ id, title }: { id: string; title: string }
   const router = useRouter();
 
   async function deleteProject() {
-    if (!window.confirm(`Delete "${title}"? This cannot be undone.`)) {
+    if (!window.confirm(`دڵنیایت لە سڕینەوەی "${title}"؟ ئەم کردارە ناگەڕێتەوە.`)) {
       return;
     }
     setBusy(true);
     const response = await fetch(`/admin/api/projects/${id}`, { method: "DELETE" });
     setBusy(false);
     if (!response.ok) {
-      alert("Project deletion failed.");
+      alert("سڕینەوەی پڕۆژە سەرکەوتوو نەبوو.");
       return;
     }
-    alert("Project deleted.");
+    alert("پڕۆژەکە سڕایەوە.");
     router.refresh();
   }
 
   return (
     <button className="button danger" disabled={busy} onClick={deleteProject} type="button">
-      {busy ? "Deleting..." : "Delete"}
+      {busy ? "لە سڕینەوەدایە..." : "سڕینەوە"}
     </button>
   );
 }

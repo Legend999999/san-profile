@@ -1,14 +1,15 @@
 export const fallbackSettings = {
   id: "local-default",
-  site_title: "San Portfolio",
-  owner_name: "San",
-  introduction: "I build modern websites, useful tools, and digital experiences.",
+  site_title: "کورد وێب",
+  owner_name: "کورد وێب",
+  introduction:
+    "وێبسایت، بۆتی تێلەگرام و سیستەمی دیجیتاڵی خێرا و ئامادەی گەشە بۆ کاروبارەکەت دروست دەکەین.",
   about_text:
-    "A focused portfolio for websites, tools, and digital experiences created with clean design and reliable engineering.",
+    "چارەسەری دیجیتاڵی ڕوون، خێرا و پیشەیی بۆ براند و کاروبارەکەت دەسازێنین.",
   github_url: "https://github.com/",
   telegram_url: "https://t.me/",
-  email: "san@example.com",
-  footer_text: "© San. Built for modern web projects.",
+  email: "hello@kurdweb.example",
+  footer_text: "© ٢٠٢٦ کورد وێب. سەرجەم مافەکان پارێزراون.",
   updated_at: new Date(0).toISOString(),
 };
 

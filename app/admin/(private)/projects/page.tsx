@@ -9,22 +9,22 @@ export default async function AdminProjects() {
     <>
       <div className="admin-topbar">
         <div>
-          <p className="eyebrow">Manage work</p>
-          <h1>Projects</h1>
-          <p className="muted">Create, publish, sort, preview, and remove portfolio entries.</p>
+          <p className="eyebrow">بەڕێوەبردنی کارەکان</p>
+          <h1>پڕۆژەکان</h1>
+          <p className="muted">پڕۆژە دروست بکە، بڵاوی بکەرەوە، ڕیزبەندی بکە، پێشبینی بکە و بسڕەوە.</p>
         </div>
-        <Link className="button primary" href="/admin/projects/new">Add Project</Link>
+        <Link className="button primary" href="/admin/projects/new">زیادکردنی پڕۆژە</Link>
       </div>
       {projects.length === 0 ? (
         <div className="empty-state admin-empty">
-          <h3>No projects yet.</h3>
-          <p>The public portfolio will stay clean until real projects are published.</p>
-          <Link className="button primary" href="/admin/projects/new">Add Project</Link>
+          <h3>هیچ پڕۆژەیەک نییە.</h3>
+          <p>پۆرتفۆلیۆی گشتی پاک دەمێنێتەوە تا پڕۆژەی ڕاستەقینە Published دەکەیت.</p>
+          <Link className="button primary" href="/admin/projects/new">زیادکردنی پڕۆژە</Link>
         </div>
       ) : (
         <div className="table-wrap">
           <table>
-            <thead><tr><th>Project</th><th>URL</th><th>Status</th><th>Order</th><th>Actions</th></tr></thead>
+            <thead><tr><th>پڕۆژە</th><th>URL</th><th>دۆخ</th><th>ڕیز</th><th>کردارەکان</th></tr></thead>
             <tbody>
               {projects.map((project) => (
                 <tr key={project.id}>
@@ -32,15 +32,15 @@ export default async function AdminProjects() {
                   <td><a className="muted table-url" href={project.website_url}>{project.website_url}</a></td>
                   <td>
                     <div className="badge-stack">
-                      <span className={`status-badge ${project.published ? "published" : "draft"}`}>{project.published ? "Published" : "Draft"}</span>
-                      {project.featured ? <span className="status-badge featured">Featured</span> : null}
+                      <span className={`status-badge ${project.published ? "published" : "draft"}`}>{project.published ? "بڵاوکراوە" : "Draft"}</span>
+                      {project.featured ? <span className="status-badge featured">تایبەت</span> : null}
                     </div>
                   </td>
                   <td>{project.display_order}</td>
                   <td>
                     <div className="table-actions">
-                      <Link className="button" href={`/admin/projects/${project.id}`}>Edit</Link>
-                      <Link className="button" href={`/projects/${project.slug}`}>Preview</Link>
+                      <Link className="button" href={`/admin/projects/${project.id}`}>دەستکاری</Link>
+                      <Link className="button" href={`/projects/${project.slug}`}>بینینی پێشەکی</Link>
                       <DeleteProjectButton id={project.id} title={project.title} />
                     </div>
                   </td>

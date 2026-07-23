@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Noto_Kufi_Arabic } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const notoKufi = Noto_Kufi_Arabic({
+  variable: "--font-noto-kufi",
+  subsets: ["arabic"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 const geistMono = Geist_Mono({
@@ -12,33 +13,33 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://san.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://san-profile.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "San | Modern Website Portfolio",
-    template: "%s | San",
+    default: "کورد وێب | Kurd Web",
+    template: "%s | کورد وێب",
   },
   description:
-    "San builds modern websites, useful tools, and polished digital experiences.",
+    "کورد وێب وێبسایت، بۆتی تێلەگرام و سیستەمی دیجیتاڵی خێرا و ئامادەی گەشە دروست دەکات.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "San | Modern Website Portfolio",
+    title: "کورد وێب | Kurd Web",
     description:
-      "A premium dark portfolio for modern websites and digital experiences.",
+      "وێبسایت، بۆتی تێلەگرام و سیستەمی دیجیتاڵی مۆدێرن بۆ کاروبارەکان.",
     url: siteUrl,
-    siteName: "San Portfolio",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "San portfolio" }],
+    siteName: "Kurd Web",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "کورد وێب" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "San | Modern Website Portfolio",
+    title: "کورد وێب | Kurd Web",
     description:
-      "A premium dark portfolio for modern websites and digital experiences.",
+      "وێبسایت، بۆتی تێلەگرام و سیستەمی دیجیتاڵی مۆدێرن بۆ کاروبارەکان.",
     images: ["/og.png"],
   },
   icons: {
@@ -53,8 +54,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="ckb" dir="rtl">
+      <body className={`${notoKufi.variable} ${geistMono.variable}`}>
         {children}
       </body>
     </html>

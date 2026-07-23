@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const project = await getProjectBySlug(slug);
   if (!project) {
-    return { title: "Project not found" };
+    return { title: "پڕۆژە نەدۆزرایەوە" };
   }
 
   return {
@@ -38,12 +38,12 @@ export default async function ProjectPreview({ params }: { params: Promise<{ slu
       <header className="nav">
         <div className="site-shell nav-inner">
           <Link className="brand" href="/">
-            <span className="brand-mark">S</span>
-            <span>San</span>
+            <span className="brand-mark">ک</span>
+            <span>کورد وێب</span>
           </Link>
-          <nav className="nav-links" aria-label="Project navigation">
-            <Link href="/#projects">Back to Projects</Link>
-            <a href={project.website_url} target="_blank" rel="noreferrer">Open Original Website</a>
+          <nav className="nav-links" aria-label="ڕێنوێنی پڕۆژە">
+            <Link href="/#projects">گەڕانەوە بۆ پڕۆژەکان</Link>
+            <a href={project.website_url} target="_blank" rel="noreferrer">کردنەوەی وێبسایتی ڕەسەن</a>
           </nav>
         </div>
       </header>
@@ -56,24 +56,24 @@ export default async function ProjectPreview({ params }: { params: Promise<{ slu
             {project.technologies.map((technology) => <span className="tag" key={technology}>{technology}</span>)}
           </div>
           <div className="hero-actions">
-            <Link className="button" href="/#projects">Back to Projects</Link>
-            <a className="button primary" href={project.website_url} target="_blank" rel="noreferrer">Open Website in New Tab</a>
+            <Link className="button" href="/#projects">گەڕانەوە بۆ پڕۆژەکان</Link>
+            <a className="button primary" href={project.website_url} target="_blank" rel="noreferrer">کردنەوە لە تابێکی نوێ</a>
           </div>
         </section>
         <section className="section" style={{ paddingTop: 0 }}>
           <div className="section-header">
-            <h2 className="section-title">Live Preview</h2>
+            <h2 className="section-title">پێشاندانی ڕاستەوخۆ</h2>
           </div>
           {canTryIframe ? (
             <>
-              <iframe src={project.website_url} title={`${project.title} live preview`} loading="lazy" />
-              <p className="muted">If the preview does not load, this website does not allow embedded previews.</p>
+              <iframe src={project.website_url} title={`${project.title} پێشاندانی ڕاستەوخۆ`} loading="lazy" />
+              <p className="muted">ئەگەر پێشاندانەکە بار نەبوو، ئەم وێبسایتە ڕێگە بە پێشاندانی ناوخۆیی نادات.</p>
             </>
           ) : (
             <div className="empty-state">
-              This website does not allow embedded previews.
+              ئەم وێبسایتە ڕێگە بە پێشاندانی ناوخۆیی نادات.
               <div className="hero-actions">
-                <a className="button primary" href={project.website_url} target="_blank" rel="noreferrer">Open Website in New Tab</a>
+                <a className="button primary" href={project.website_url} target="_blank" rel="noreferrer">کردنەوە لە تابێکی نوێ</a>
               </div>
             </div>
           )}

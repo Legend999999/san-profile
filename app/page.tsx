@@ -15,13 +15,13 @@ export default async function Home() {
       <header className="nav">
         <div className="site-shell nav-inner">
           <Link className="brand" href="/">
-            <span className="brand-mark">S</span>
+            <span className="brand-mark">ک</span>
             <span>{settings.owner_name}</span>
           </Link>
-          <nav className="nav-links" aria-label="Main navigation">
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-            <Link href="/admin/login">Admin</Link>
+          <nav className="nav-links" aria-label="ڕێنوێنی سەرەکی">
+            <a href="#projects">پڕۆژەکان</a>
+            <a href="#contact">پەیوەندی</a>
+            <Link href="/admin/login">داشبۆرد</Link>
           </nav>
         </div>
       </header>
@@ -30,22 +30,22 @@ export default async function Home() {
         <section className="hero">
           <div className="site-shell hero-grid">
             <div className="hero-copy">
-              <span className="eyebrow">Independent web portfolio</span>
+              <span className="eyebrow">Kurd Web / کورد وێب</span>
               <h1>
-                {settings.owner_name} builds sharp web experiences with a polished edge.
+                بیرۆکەت دەکەینە ئەزموونێکی دیجیتاڵی بەهێز
               </h1>
               <p className="lead">{settings.introduction}</p>
-              <div className="hero-proof" aria-label="Portfolio capabilities">
-                <span>Responsive websites</span>
-                <span>Fast interfaces</span>
-                <span>Clean project systems</span>
+              <div className="hero-proof" aria-label="تواناکانی کورد وێب">
+                <span>وێبسایتی Responsive</span>
+                <span>ڕووکارە خێراکان</span>
+                <span>سیستەمی دیجیتاڵی پاک</span>
               </div>
               <div className="hero-actions">
                 <a className="button primary" href="#projects">
-                  View Work
+                  پڕۆژەکانمان ببینە
                 </a>
                 <a className="button" href="#contact">
-                  Contact San
+                  دەست بە پڕۆژەکەت بکە
                 </a>
               </div>
             </div>
@@ -55,12 +55,12 @@ export default async function Home() {
                   <span />
                   <span />
                   <span />
-                  <strong>san-profile</strong>
+                  <strong>kurd-web</strong>
                 </div>
                 <div className="device-hero">
                   <div>
-                    <small>Selected build</small>
-                    <strong>Modern Website</strong>
+                    <small>پڕۆژەی دیاریکراو</small>
+                    <strong>وێبسایتی مۆدێرن</strong>
                   </div>
                   <div className="device-badge">Live</div>
                 </div>
@@ -70,46 +70,46 @@ export default async function Home() {
                   <span />
                 </div>
                 <div className="device-footer">
-                  <span>Design</span>
-                  <span>Code</span>
+                  <span>دیزاین</span>
+                  <span>کۆد</span>
                   <span>Deploy</span>
                 </div>
               </div>
               <div className="hero-orbit">
                 <div>
                   <span>CMS</span>
-                  <strong>Supabase powered</strong>
+                  <strong>بە Supabase بەڕێوەدەبرێت</strong>
                 </div>
                 <div>
-                  <span>Status</span>
-                  <strong>Production ready</strong>
+                  <span>دۆخ</span>
+                  <strong>ئامادەی Production</strong>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="section intro-band" aria-label="Portfolio focus">
+        <section className="section intro-band" aria-label="خزمەتگوزارییەکان">
           <div className="site-shell intro-grid">
             <div>
-              <p className="eyebrow">What this portfolio shows</p>
-              <h2 className="section-title">Built for work that needs to feel credible fast.</h2>
+              <p className="eyebrow">خزمەتگوزارییەکان</p>
+              <h2 className="section-title">چوارچێوەی کاری کورد وێب بۆ پڕۆژەی دیجیتاڵی بەهێز.</h2>
             </div>
             <div className="focus-list">
               <div>
                 <span>01</span>
-                <strong>Modern presentation</strong>
-                <p>Dark, focused pages for sites, tools, bots, and client-ready builds.</p>
+                <strong>وێبسایتی پیشەیی و بازرگانی</strong>
+                <p>دروستکردنی وێبسایتی خێرا و مۆدێرن بۆ براند و کۆمپانیاکان.</p>
               </div>
               <div>
                 <span>02</span>
-                <strong>Real project control</strong>
-                <p>Projects, images, settings, and publishing are managed from the private CMS.</p>
+                <strong>بۆتی تێلەگرام و ژیری دەستکرد</strong>
+                <p>بۆتی زیرەک، ئامرازەکانی ژیری دەستکرد و ئۆتۆماتیککردنی کارەکان بۆ ڕێکخستنی کارە ڕۆژانەکان.</p>
               </div>
               <div>
                 <span>03</span>
-                <strong>Clean delivery</strong>
-                <p>Hosted on Vercel, editable through Supabase, and ready for real portfolio content.</p>
+                <strong>سیستەمی دیجیتاڵی تایبەت</strong>
+                <p>بنیاتنانی سیستەمی گونجاو بەپێی پێداویستییە تایبەتەکانی پڕۆژەکەت.</p>
               </div>
             </div>
           </div>
@@ -119,10 +119,10 @@ export default async function Home() {
           <div className="site-shell">
             <div className="section-header">
               <div>
-                <p className="eyebrow">Selected work</p>
-                <h2 className="section-title">Projects</h2>
+                <p className="eyebrow">دواین پڕۆژەکانمان</p>
+                <h2 className="section-title">پڕۆژەکان</h2>
               </div>
-              <p className="muted">Published Supabase projects will appear here instantly after you save them.</p>
+              <p className="muted">پڕۆژە Published ـەکان لە Supabase دوای پاشەکەوتکردن دەستبەجێ لێرە دەردەکەون.</p>
             </div>
             {projects.length > 0 ? (
               <div className="project-grid">
@@ -138,18 +138,19 @@ export default async function Home() {
                   <span />
                 </div>
                 <div>
-                  <p className="eyebrow">Portfolio awaiting real work</p>
-                  <h3>No published projects yet.</h3>
+                  <p className="eyebrow">پڕۆژەی بڵاوکراوە نییە</p>
+                  <h3>هیچ پڕۆژەیەک نەدۆزرایەوە.</h3>
                   <p>
-                    Add your first project from the admin dashboard, upload a polished image,
-                    mark it as published, and it will appear here without another deploy.
+                    کاتێک پڕۆژەیەکی ڕاستەقینە لە داشبۆرد زیاد دەکەیت،
+                    وێنەیەکی پیشەیی بار دەکەیت و Published دەکەیت،
+                    لێرە دەردەکەوێت بێ Deploy ـی نوێ.
                   </p>
                   <div className="hero-actions">
                     <Link className="button primary" href="/admin/login">
-                      Open Admin
+                      کردنەوەی داشبۆرد
                     </Link>
                     <a className="button" href="#contact">
-                      Contact First
+                      پەیوەندی بکە
                     </a>
                   </div>
                 </div>
@@ -161,8 +162,8 @@ export default async function Home() {
         <section className="section contact-section" id="contact">
           <div className="site-shell contact-band">
             <div>
-              <p className="eyebrow">Available for modern web work</p>
-              <h2 className="section-title">Let&apos;s make the next project feel premium from day one.</h2>
+              <p className="eyebrow">پەیوەندی</p>
+              <h2 className="section-title">با پێکەوە دەست بە پڕۆژەکەت بکەین</h2>
               <p className="muted">{settings.about_text}</p>
             </div>
             <div className="hero-actions">

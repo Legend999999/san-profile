@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { Project } from "@/lib/types";
 
 export function ProjectCard({ project }: { project: Project }) {
-  const date = new Intl.DateTimeFormat("en", {
+  const date = new Intl.DateTimeFormat("ckb-IQ", {
     month: "short",
     day: "numeric",
     year: "numeric",
@@ -11,10 +11,10 @@ export function ProjectCard({ project }: { project: Project }) {
 
   return (
     <article className="card">
-      <Link href={`/projects/${project.slug}`} aria-label={`Preview ${project.title}`}>
+      <Link href={`/projects/${project.slug}`} aria-label={`بینینی پڕۆژە: ${project.title}`}>
         <div className="project-image">
           {project.screenshot_url ? (
-            <img src={project.screenshot_url} alt={`${project.title} screenshot`} />
+            <img src={project.screenshot_url} alt={`وێنەی پڕۆژەی ${project.title}`} />
           ) : (
             <div className="fallback-shot">
               <span>{project.category}</span>
@@ -26,7 +26,7 @@ export function ProjectCard({ project }: { project: Project }) {
       <div className="card-body">
         <div className="meta-row">
           <span>{project.category}</span>
-          {project.featured ? <span>Featured</span> : null}
+          {project.featured ? <span>تایبەت</span> : null}
           <span>{date}</span>
         </div>
         <h3>{project.title}</h3>
@@ -40,10 +40,10 @@ export function ProjectCard({ project }: { project: Project }) {
         </div>
         <div className="hero-actions">
           <Link className="button primary" href={`/projects/${project.slug}`}>
-            Preview
+            بینینی پڕۆژە
           </Link>
           <a className="button" href={project.website_url} target="_blank" rel="noreferrer">
-            Visit
+            پێشاندانی ڕاستەوخۆ
           </a>
         </div>
       </div>

@@ -11,42 +11,42 @@ export default async function AdminDashboard() {
     <>
       <div className="admin-topbar">
         <div>
-          <p className="eyebrow">Private dashboard</p>
-          <h1>Portfolio CMS</h1>
-          <p className="muted">Manage published work, drafts, images, and homepage content from Supabase.</p>
+          <p className="eyebrow">داشبۆردی تایبەت</p>
+          <h1>CMS ـی کورد وێب</h1>
+          <p className="muted">پڕۆژە Published ـەکان، Draft ـەکان، وێنەکان و ناوەڕۆکی ماڵپەڕ لە Supabase بەڕێوەببە.</p>
         </div>
         <Link className="button primary" href="/admin/projects/new">
-          Quick Add Project
+          زیادکردنی خێرای پڕۆژە
         </Link>
       </div>
       <section className="stat-grid">
-        <div className="admin-card stat-card"><span className="muted">Total projects</span><div className="stat-value">{projects.length}</div><small>All Supabase rows</small></div>
-        <div className="admin-card stat-card"><span className="muted">Published</span><div className="stat-value">{published.length}</div><small>Visible to visitors</small></div>
-        <div className="admin-card stat-card"><span className="muted">Drafts</span><div className="stat-value">{drafts.length}</div><small>Hidden from public</small></div>
-        <div className="admin-card stat-card"><span className="muted">Featured</span><div className="stat-value">{featured.length}</div><small>Priority display</small></div>
+        <div className="admin-card stat-card"><span className="muted">کۆی پڕۆژەکان</span><div className="stat-value">{projects.length}</div><small>هەموو ڕیزەکانی Supabase</small></div>
+        <div className="admin-card stat-card"><span className="muted">بڵاوکراوە</span><div className="stat-value">{published.length}</div><small>بۆ سەردانیکەران دیارە</small></div>
+        <div className="admin-card stat-card"><span className="muted">Draft</span><div className="stat-value">{drafts.length}</div><small>لە ماڵپەڕ شاراوەیە</small></div>
+        <div className="admin-card stat-card"><span className="muted">تایبەت</span><div className="stat-value">{featured.length}</div><small>پێشاندانی لەپێش</small></div>
       </section>
       <section className="section admin-section">
         <div className="section-header">
-          <h2 className="section-title">Recent projects</h2>
-          <Link className="pill-link" href="/admin/projects">Manage all</Link>
+          <h2 className="section-title">دواین پڕۆژەکان</h2>
+          <Link className="pill-link" href="/admin/projects">بەڕێوەبردنی هەموو</Link>
         </div>
         {projects.length === 0 ? (
           <div className="empty-state admin-empty">
-            <h3>No projects yet.</h3>
-            <p>Add your first real project, upload an image, and publish it when it is ready for visitors.</p>
-            <Link className="button primary" href="/admin/projects/new">Create Project</Link>
+            <h3>هیچ پڕۆژەیەک نییە.</h3>
+            <p>یەکەم پڕۆژەی ڕاستەقینە زیاد بکە، وێنە بار بکە و کاتێک ئامادە بوو Published ـی بکە.</p>
+            <Link className="button primary" href="/admin/projects/new">دروستکردنی پڕۆژە</Link>
           </div>
         ) : (
           <div className="table-wrap">
             <table>
-              <thead><tr><th>Title</th><th>Status</th><th>Featured</th><th>Added</th></tr></thead>
+              <thead><tr><th>ناونیشان</th><th>دۆخ</th><th>تایبەت</th><th>زیادکراو</th></tr></thead>
               <tbody>
                 {projects.slice(0, 6).map((project) => (
                   <tr key={project.id}>
                     <td>{project.title}</td>
-                    <td><span className={`status-badge ${project.published ? "published" : "draft"}`}>{project.published ? "Published" : "Draft"}</span></td>
-                    <td><span className={`status-badge ${project.featured ? "featured" : ""}`}>{project.featured ? "Featured" : "Standard"}</span></td>
-                    <td>{new Date(project.created_at).toLocaleDateString("en")}</td>
+                    <td><span className={`status-badge ${project.published ? "published" : "draft"}`}>{project.published ? "بڵاوکراوە" : "Draft"}</span></td>
+                    <td><span className={`status-badge ${project.featured ? "featured" : ""}`}>{project.featured ? "تایبەت" : "ئاسایی"}</span></td>
+                    <td>{new Date(project.created_at).toLocaleDateString("ckb-IQ")}</td>
                   </tr>
                 ))}
               </tbody>
