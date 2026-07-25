@@ -33,7 +33,6 @@ export function SettingsForm({ settings }: { settings: WebsiteSettings }) {
       <div className="form-grid">
         <div className="field"><label htmlFor="site_title">ناونیشانی ماڵپەڕ</label><input className="input" id="site_title" name="site_title" defaultValue={settings.site_title} required /></div>
         <div className="field"><label htmlFor="owner_name">ناوی پیشاندراو</label><input className="input" id="owner_name" name="owner_name" defaultValue={settings.owner_name} required /></div>
-        <div className="field"><label htmlFor="github_url">لینکی GitHub</label><input className="input" id="github_url" name="github_url" defaultValue={settings.github_url ?? ""} /></div>
         <div className="field"><label htmlFor="telegram_url">لینکی Telegram</label><input className="input" id="telegram_url" name="telegram_url" defaultValue={settings.telegram_url ?? ""} /></div>
         <div className="field"><label htmlFor="email">Email</label><input className="input" id="email" name="email" type="email" defaultValue={settings.email ?? ""} /></div>
         <div className="field"><label htmlFor="footer_text">دەقی Footer</label><input className="input" id="footer_text" name="footer_text" defaultValue={settings.footer_text} /></div>

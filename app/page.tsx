@@ -103,7 +103,6 @@ export default async function Home() {
               <p className="muted">{settings.about_text}</p>
             </div>
             <div className="hero-actions">
-              {settings.github_url ? <a className="button" href={settings.github_url}>GitHub</a> : null}
               {settings.telegram_url ? <a className="button" href={settings.telegram_url}>Telegram</a> : null}
               {settings.email ? <a className="button primary" href={`mailto:${settings.email}`}>Email</a> : null}
             </div>
