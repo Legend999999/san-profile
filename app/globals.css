@@ -172,6 +172,10 @@ button:disabled {
   align-items: center;
 }
 
+.hero-grid-simple {
+  grid-template-columns: minmax(0, 900px);
+}
+
 .hero-copy {
   animation: fade-up 680ms ease both;
 }
@@ -585,6 +589,19 @@ button:disabled {
   gap: 26px;
   align-items: center;
   padding: 28px;
+}
+
+.portfolio-empty-simple {
+  display: block;
+  padding: 28px;
+}
+
+.portfolio-empty-simple p {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(18px, 2.4vw, 24px);
+  font-weight: 700;
+  line-height: 1.75;
 }
 
 .portfolio-empty h3,
