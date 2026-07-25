@@ -44,7 +44,7 @@ body {
   direction: rtl;
   text-align: right;
   font-family: var(--font-noto-kufi), Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.75;
   letter-spacing: 0;
 }
@@ -113,7 +113,7 @@ button:disabled {
   align-items: center;
   gap: 10px;
   color: var(--text);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 700;
 }
 
@@ -127,7 +127,7 @@ button:disabled {
   color: #041011;
   background: linear-gradient(135deg, var(--mint), var(--teal));
   box-shadow: 0 14px 40px rgba(61, 214, 198, 0.18);
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 800;
 }
 
@@ -136,7 +136,7 @@ button:disabled {
   align-items: center;
   gap: 6px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .nav-links a,
@@ -195,17 +195,17 @@ button:disabled {
 }
 
 .hero h1 {
-  max-width: 760px;
+  max-width: 700px;
   margin: 20px 0 18px;
-  font-size: clamp(32px, 4.6vw, 58px);
+  font-size: clamp(26px, 3.5vw, 44px);
   font-weight: 800;
-  line-height: 1.26;
+  line-height: 1.36;
 }
 
 .lead {
   max-width: 680px;
   color: var(--muted);
-  font-size: clamp(14px, 1.35vw, 17px);
+  font-size: clamp(13px, 1.15vw, 15px);
   line-height: 1.9;
 }
 
@@ -236,17 +236,17 @@ button:disabled {
 
 .button {
   display: inline-flex;
-  min-height: 40px;
+  min-height: 36px;
   align-items: center;
   justify-content: center;
   gap: 8px;
   border: 1px solid var(--line-strong);
   border-radius: 8px;
-  padding: 9px 14px;
+  padding: 8px 12px;
   color: var(--text);
   background: rgba(255, 255, 255, 0.055);
   cursor: pointer;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   line-height: 1.45;
   transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
@@ -442,14 +442,14 @@ button:disabled {
 .focus-list strong {
   display: block;
   margin-top: 18px;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.65;
 }
 
 .focus-list p {
   margin: 10px 0 0;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.85;
 }
 
@@ -467,7 +467,7 @@ button:disabled {
 
 .section-title {
   margin: 14px 0 0;
-  font-size: clamp(23px, 2.7vw, 34px);
+  font-size: clamp(20px, 2.1vw, 28px);
   font-weight: 800;
   line-height: 1.32;
 }
@@ -533,7 +533,7 @@ button:disabled {
 
 .fallback-shot strong {
   margin-top: 8px;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 1.35;
 }
 
@@ -543,7 +543,7 @@ button:disabled {
 
 .card-body h3 {
   margin: 12px 0 8px;
-  font-size: 19px;
+  font-size: 17px;
   line-height: 1.45;
 }
 
@@ -599,7 +599,7 @@ button:disabled {
 .portfolio-empty-simple p {
   margin: 0;
   color: var(--text);
-  font-size: clamp(18px, 2.4vw, 24px);
+  font-size: clamp(15px, 1.8vw, 19px);
   font-weight: 700;
   line-height: 1.75;
 }
@@ -608,7 +608,7 @@ button:disabled {
 .admin-empty h3 {
   margin: 14px 0 10px;
   color: var(--text);
-  font-size: clamp(24px, 3.2vw, 34px);
+  font-size: clamp(20px, 2.5vw, 28px);
   line-height: 1.35;
 }
 
@@ -1219,18 +1219,18 @@ tr:last-child td {
   }
 
   .hero h1 {
-    font-size: clamp(25px, 7.4vw, 34px);
-    line-height: 1.38;
+    font-size: clamp(21px, 6vw, 28px);
+    line-height: 1.45;
   }
 
   .lead {
-    font-size: 13px;
+    font-size: 12px;
     line-height: 1.9;
   }
 
   .section-title,
   .admin-topbar h1 {
-    font-size: clamp(21px, 5.8vw, 27px);
+    font-size: clamp(18px, 4.8vw, 23px);
     line-height: 1.38;
   }
 
@@ -1262,20 +1262,20 @@ tr:last-child td {
 
   .portfolio-empty h3,
   .admin-empty h3 {
-    font-size: 21px;
+    font-size: 18px;
     line-height: 1.4;
   }
 
   .portfolio-empty p,
   .admin-empty p {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .button {
     width: 100%;
-    min-height: 38px;
-    padding: 9px 12px;
-    font-size: 11px;
+    min-height: 34px;
+    padding: 8px 10px;
+    font-size: 10px;
   }
 
   .sidebar-nav {
@@ -1299,7 +1299,7 @@ tr:last-child td {
   }
 
   .login-copy h1 {
-    font-size: clamp(24px, 6.8vw, 32px);
+    font-size: clamp(20px, 5.5vw, 27px);
     line-height: 1.32;
   }
 
