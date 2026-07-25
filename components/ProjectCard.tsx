@@ -3,48 +3,50 @@ import Link from "next/link";
 import type { Project } from "@/lib/types";
 
 export function ProjectCard({ project }: { project: Project }) {
-  const date = new Intl.DateTimeFormat("ckb-IQ", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-  }).format(new Date(project.created_at));
-
   return (
-    <article className="card">
+    <article className="project-card">
       <Link href={`/projects/${project.slug}`} aria-label={`بینینی پڕۆژە: ${project.title}`}>
-        <div className="project-image">
-          {project.screenshot_url ? (
-            <img src={project.screenshot_url} alt={`وێنەی پڕۆژەی ${project.title}`} />
-          ) : (
-            <div className="fallback-shot">
-              <span>{project.category}</span>
-              <strong>{project.title}</strong>
-            </div>
-          )}
+        <div className="project-browser">
+          <div className="project-browser-bar" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </div>
+          <div className="project-image">
+            {project.screenshot_url ? (
+              <img src={project.screenshot_url} alt={`وێنەی پڕۆژەی ${project.title}`} loading="lazy" />
+            ) : (
+              <div className="fallback-shot">
+                <span>{project.category}</span>
+                <strong>{project.title}</strong>
+              </div>
+            )}
+          </div>
         </div>
       </Link>
-      <div className="card-body">
+      <div className="project-info">
         <div className="meta-row">
           <span>{project.category}</span>
           {project.featured ? <span>تایبەت</span> : null}
-          <span>{date}</span>
         </div>
         <h3>{project.title}</h3>
-        <p className="muted">{project.short_description}</p>
-        <div className="tag-row">
-          {project.technologies.map((technology) => (
-            <span className="tag" key={technology}>
-              {technology}
-            </span>
-          ))}
-        </div>
-        <div className="hero-actions">
-          <Link className="button primary" href={`/projects/${project.slug}`}>
-            بینینی پڕۆژە
-          </Link>
-          <a className="button" href={project.website_url} target="_blank" rel="noreferrer">
-            پێشاندانی ڕاستەوخۆ
+        <p>{project.short_description}</p>
+        {project.technologies.length > 0 ? (
+          <div className="tag-row">
+            {project.technologies.map((technology) => (
+              <span className="tag" key={technology}>
+                {technology}
+              </span>
+            ))}
+          </div>
+        ) : null}
+        <div className="project-actions">
+          <a className="button primary" href={project.website_url} target="_blank" rel="noreferrer">
+            وێبسایت ببینە
           </a>
+          <Link className="button ghost" href={`/projects/${project.slug}`}>
+            وردەکاری
+          </Link>
         </div>
       </div>
     </article>

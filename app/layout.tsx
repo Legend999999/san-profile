@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Noto_Kufi_Arabic } from "next/font/google";
+import { Geist_Mono, Vazirmatn } from "next/font/google";
 import "./globals.css";
 
-const notoKufi = Noto_Kufi_Arabic({
-  variable: "--font-noto-kufi",
+const vazirmatn = Vazirmatn({
+  variable: "--font-vazirmatn",
   subsets: ["arabic"],
   weight: ["400", "500", "600", "700", "800"],
 });
@@ -13,33 +13,33 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://san-profile.vercel.app";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://kurdwebsite.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "کورد وێب | Kurd Web",
-    template: "%s | کورد وێب",
+    default: "کورد وێبسایت | دروستکردنی وێبسایت لە کوردستان",
+    template: "%s | کورد وێبسایت",
   },
   description:
-    "کورد وێب وێبسایت، بۆتی تێلەگرام و سیستەمی دیجیتاڵی خێرا و ئامادەی گەشە دروست دەکات.",
+    "دیزاین و گەشەپێدانی وێبسایتی پیشەیی بۆ کاروبار، کۆمپانیا و کەسایەتییەکان لە کوردستان.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "کورد وێب | Kurd Web",
+    title: "کورد وێبسایت | Kurd Website",
     description:
-      "وێبسایت، بۆتی تێلەگرام و سیستەمی دیجیتاڵی مۆدێرن بۆ کاروبارەکان.",
+      "دیزاین و گەشەپێدانی وێبسایتی پیشەیی بۆ کاروبارەکان.",
     url: siteUrl,
-    siteName: "Kurd Web",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "کورد وێب" }],
+    siteName: "Kurd Website",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "کورد وێبسایت" }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "کورد وێب | Kurd Web",
+    title: "کورد وێبسایت | Kurd Website",
     description:
-      "وێبسایت، بۆتی تێلەگرام و سیستەمی دیجیتاڵی مۆدێرن بۆ کاروبارەکان.",
+      "دیزاین و گەشەپێدانی وێبسایتی پیشەیی بۆ کاروبارەکان.",
     images: ["/og.png"],
   },
   icons: {
@@ -55,7 +55,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ckb" dir="rtl">
-      <body className={`${notoKufi.variable} ${geistMono.variable}`}>
+      <body className={`${vazirmatn.variable} ${geistMono.variable}`}>
         {children}
       </body>
     </html>

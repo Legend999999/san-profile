@@ -1,15 +1,15 @@
 export const fallbackSettings = {
   id: "local-default",
-  site_title: "کورد وێب",
-  owner_name: "کورد وێب",
+  site_title: "کورد وێبسایت",
+  owner_name: "کورد وێبسایت",
   introduction:
     "وێبسایت، بۆتی تێلەگرام و سیستەمی دیجیتاڵی خێرا و ئامادەی گەشە بۆ کاروبارەکەت دروست دەکەین.",
   about_text:
     "چارەسەری دیجیتاڵی ڕوون، خێرا و پیشەیی بۆ براند و کاروبارەکەت دەسازێنین.",
   github_url: "https://github.com/",
   telegram_url: "https://t.me/dark721_1",
-  email: "hello@kurdweb.example",
-  footer_text: "© ٢٠٢٦ کورد وێب. سەرجەم مافەکان پارێزراون.",
+  email: null,
+  footer_text: "© 2026 Kurd Website — کورد وێبسایت",
   updated_at: new Date(0).toISOString(),
 };
 

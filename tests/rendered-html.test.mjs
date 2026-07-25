@@ -4,7 +4,7 @@ import test from "node:test";
 
 const templateRoot = new URL("../", import.meta.url);
 
-test("Kurd Web source uses Kurdish RTL portfolio copy", async () => {
+test("Kurd Website source uses Kurdish RTL agency copy", async () => {
   const [page, layout, config, projectCard] = await Promise.all([
     readFile(new URL("app/page.tsx", templateRoot), "utf8"),
     readFile(new URL("app/layout.tsx", templateRoot), "utf8"),
@@ -13,11 +13,11 @@ test("Kurd Web source uses Kurdish RTL portfolio copy", async () => {
   ]);
 
   const source = `${page}\n${layout}\n${config}\n${projectCard}`;
-  assert.match(source, /کورد وێب/);
+  assert.match(source, /کورد وێبسایت/);
   assert.match(source, /پڕۆژەکان/);
   assert.match(source, /پەیوەندی/);
   assert.match(layout, /dir="rtl"/);
-  assert.match(layout, /Noto_Kufi_Arabic/);
+  assert.match(layout, /Vazirmatn/);
   assert.doesNotMatch(source, /Aurora Studio|Screenshot will appear after generation/);
 });
 
