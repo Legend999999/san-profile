@@ -7,7 +7,7 @@ export const fallbackSettings = {
   about_text:
     "چارەسەری دیجیتاڵی ڕوون، خێرا و پیشەیی بۆ براند و کاروبارەکەت دەسازێنین.",
   github_url: "https://github.com/",
-  telegram_url: "https://t.me/",
+  telegram_url: "https://t.me/dark721_1",
   email: "hello@kurdweb.example",
   footer_text: "© ٢٠٢٦ کورد وێب. سەرجەم مافەکان پارێزراون.",
   updated_at: new Date(0).toISOString(),
