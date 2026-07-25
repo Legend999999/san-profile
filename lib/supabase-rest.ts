@@ -21,7 +21,7 @@ export async function supabaseRequest<T>(
 ): Promise<T> {
   const config = getSupabaseConfig();
   if (!config) {
-    throw new SupabaseConfigError("Supabase ڕێک نەخراوە.");
+    throw new SupabaseConfigError("ڕێکخستنی Supabase ئەنجام نەدراوە.");
   }
 
   const authToken = token ?? config.anonKey;
@@ -40,7 +40,7 @@ export async function supabaseRequest<T>(
 
   if (!response.ok) {
     const message = await response.text();
-    throw new Error(message || `داواکاری Supabase سەرکەوتوو نەبوو بە دۆخی ${response.status}`);
+    throw new Error(message || `داواکاریی Supabase سەرکەوتوو نەبوو، کۆد: ${response.status}`);
   }
 
   if (response.status === 204) {

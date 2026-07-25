@@ -24,7 +24,7 @@ async function captureWithGenericProvider(targetUrl: string) {
   });
 
   if (!response.ok) {
-    throw new Error("دابینکەری screenshot نەیتوانی ئەم وێبسایتە وەربگرێت.");
+    throw new Error("نەتوانرا وێنەی ڕوونمای ئەم وێبسایتە وەربگیرێت.");
   }
 
   return await response.arrayBuffer();
@@ -33,7 +33,7 @@ async function captureWithGenericProvider(targetUrl: string) {
 async function uploadScreenshot(bytes: ArrayBuffer, slug: string, token: string) {
   const config = getSupabaseConfig();
   if (!config) {
-    throw new Error("Supabase ڕێک نەخراوە.");
+    throw new Error("ڕێکخستنی Supabase ئەنجام نەدراوە.");
   }
 
   const safeSlug = slug.replace(/[^a-z0-9-]/gi, "-").toLowerCase();
@@ -50,7 +50,7 @@ async function uploadScreenshot(bytes: ArrayBuffer, slug: string, token: string)
   });
 
   if (!upload.ok) {
-    throw new Error("وەرگرتنی screenshot سەرکەوتوو بوو، بەڵام بارکردن بۆ Storage سەرکەوتوو نەبوو.");
+    throw new Error("وێنەی ڕوونما وەرگیرا، بەڵام بارکردنی بۆ Storage سەرکەوتوو نەبوو.");
   }
 
   return `${config.url}/storage/v1/object/public/project-images/${fileName}`;

@@ -18,18 +18,18 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://kurdwebsite.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "کورد وێبسایت | دروستکردنی وێبسایت لە کوردستان",
+    default: "کورد وێبسایت | دروستکردنی وێبسایت و سیستەمی دیجیتاڵی",
     template: "%s | کورد وێبسایت",
   },
   description:
-    "دیزاین و گەشەپێدانی وێبسایتی پیشەیی بۆ کاروبار، کۆمپانیا و کەسایەتییەکان لە کوردستان.",
+    "دیزاین و گەشەپێدانی وێبسایتی پیشەیی، بۆتی تێلەگرام و سیستەمی دیجیتاڵی لە کوردستان.",
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "کورد وێبسایت | Kurd Website",
     description:
-      "دیزاین و گەشەپێدانی وێبسایتی پیشەیی بۆ کاروبارەکان.",
+      "دیزاین و گەشەپێدانی وێبسایت و سیستەمی دیجیتاڵی بۆ کاروبارەکان.",
     url: siteUrl,
     siteName: "Kurd Website",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "کورد وێبسایت" }],
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "کورد وێبسایت | Kurd Website",
     description:
-      "دیزاین و گەشەپێدانی وێبسایتی پیشەیی بۆ کاروبارەکان.",
+      "دیزاین و گەشەپێدانی وێبسایت و سیستەمی دیجیتاڵی بۆ کاروبارەکان.",
     images: ["/og.png"],
   },
   icons: {

@@ -27,7 +27,7 @@ export function ProjectCard({ project }: { project: Project }) {
       <div className="project-info">
         <div className="meta-row">
           <span>{project.category}</span>
-          {project.featured ? <span>تایبەت</span> : null}
+          {project.featured ? <span>دیار</span> : null}
         </div>
         <h3>{project.title}</h3>
         <p>{project.short_description}</p>
@@ -42,10 +42,10 @@ export function ProjectCard({ project }: { project: Project }) {
         ) : null}
         <div className="project-actions">
           <a className="button primary" href={project.website_url} target="_blank" rel="noreferrer">
-            وێبسایت ببینە
+            بینینی وێبسایت
           </a>
           <Link className="button ghost" href={`/projects/${project.slug}`}>
-            وردەکاری
+            وردەکارییەکان
           </Link>
         </div>
       </div>

@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     const token = await requireAdminToken();
     const config = getSupabaseConfig();
     if (!config) {
-      throw new SupabaseConfigError("Supabase ڕێک نەخراوە.");
+      throw new SupabaseConfigError("ڕێکخستنی Supabase ئەنجام نەدراوە.");
     }
 
     const formData = await request.formData();
@@ -24,13 +24,13 @@ export async function POST(request: Request) {
     const slug = String(formData.get("slug") ?? "project");
 
     if (!(file instanceof File)) {
-      return NextResponse.json({ error: "وێنەیەک بۆ بارکردن هەڵبژێرە." }, { status: 400 });
+      return NextResponse.json({ error: "تکایە وێنەیەک بۆ بارکردن هەڵبژێرە." }, { status: 400 });
     }
     if (!allowedTypes.has(file.type)) {
-      return NextResponse.json({ error: "تەنها وێنەی PNG, JPEG, WebP یان GIF بەکاربهێنە." }, { status: 400 });
+      return NextResponse.json({ error: "تەنها فۆرماتەکانی PNG, JPEG, WebP یان GIF ڕێگەپێدراون." }, { status: 400 });
     }
     if (file.size > maxImageBytes) {
-      return NextResponse.json({ error: "قەبارەی وێنە دەبێت 5 MB یان کەمتر بێت." }, { status: 400 });
+      return NextResponse.json({ error: "قەبارەی وێنە دەبێت ٥ مێگابایت (5MB) یان کەمتر بێت." }, { status: 400 });
     }
 
     const fileName = safeFileName(slug, file);

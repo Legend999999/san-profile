@@ -18,7 +18,7 @@ export function DeleteProjectButton({ id, title }: { id: string; title: string }
       alert("سڕینەوەی پڕۆژە سەرکەوتوو نەبوو.");
       return;
     }
-    alert("پڕۆژەکە سڕایەوە.");
+    alert("پڕۆژەکە بە سەرکەوتوویی سڕایەوە.");
     router.refresh();
   }
 

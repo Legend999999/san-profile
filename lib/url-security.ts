@@ -21,11 +21,11 @@ export function validatePublicWebsiteUrl(value: string) {
   try {
     url = new URL(value);
   } catch {
-    throw new Error("URL ـی وێبسایتێکی دروست بنووسە.");
+    throw new Error("تکایە بەستەرێکی (URL) دروست بنووسە.");
   }
 
   if (!["https:", "http:"].includes(url.protocol)) {
-    throw new Error("تەنها URL ـی http و https ڕێگەپێدراون.");
+    throw new Error("تەنها بەستەری http و https ڕێگەپێدراون.");
   }
 
   const hostname = url.hostname.toLowerCase();
@@ -37,7 +37,7 @@ export function validatePublicWebsiteUrl(value: string) {
     hostname === "169.254.169.254" ||
     isPrivateIPv4(hostname)
   ) {
-    throw new Error("URL ـی ناوخۆیی، localhost، تۆڕی تایبەت و metadata بلۆک کراون.");
+    throw new Error("بەستەری ناوخۆیی (localhost) و تۆڕی تایبەت ڕێگەپێدراو نین.");
   }
 
   url.username = "";

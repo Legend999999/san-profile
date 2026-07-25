@@ -26,7 +26,7 @@ export async function PATCH(request: Request) {
       },
     );
     if (!rows[0]) {
-      return new NextResponse("هیچ ڕیزی ڕێکخستنەکان نوێ نەکرایەوە. RLS و admin_users لە Supabase بپشکنە.", { status: 403 });
+      return new NextResponse("ڕێکخستنەکان نوێ نەکرانەوە. تکایە ڕێپێدانەکانی Supabase (RLS) بپشکنە.", { status: 403 });
     }
     return NextResponse.json(rows[0]);
   } catch (error) {

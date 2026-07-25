@@ -5,47 +5,47 @@ import { SiteHeader } from "@/components/SiteHeader";
 
 export const dynamic = "force-dynamic";
 
-const trustLabels = ["کافێ و ڕێستورانت", "کۆمپانیا", "فرۆشگا", "کەسی", "خزمەتگوزاری"];
+const trustLabels = ["کافێ و ڕێستۆرانت", "کۆمپانیاکان", "فرۆشگاکان", "پڕۆژەی کەسی", "خزمەتگوزارییەکان"];
 
 const services = [
   {
     number: "01",
     icon: "▣",
     title: "وێبسایتی پیشەیی و بازرگانی",
-    description: "وێبسایتێکی خێرا، جوان و متمانەپێکراو بۆ ناساندن و گەشەپێدانی کاروبارەکەت.",
-    features: ["دیزاینی تایبەت", "گونجاو بۆ هەموو ئامێرەکان", "SEO و خێرایی باش", "پەیوەندی و داواکاری"],
+    description: "وێبسایتێکی خێرا و سەردەمیی بۆ ناساندن و گەشەپێدان و کۆدنووسینی ناوبانگی بڕاندەکەت.",
+    features: ["دیزاینی تایبەت (Custom Design)", "گونجاو بۆ تەواوی ئامێرەکان", "خێرایی بەرز و گونجاو بۆ SEO", "سیستەمی پەیوەندی و داواکاری"],
   },
   {
     number: "02",
     icon: "✦",
     title: "بۆتی تێلەگرام",
-    description: "بۆتی زیرەک بۆ وەڵامدانەوە، بەڕێوەبردن، ئۆتۆماتیککردن و خزمەتکردنی بەکارهێنەران.",
-    features: ["ئۆتۆماتیککردنی کارەکان", "بەڕێوەبردنی گرووپ", "سیستەمی وەڵامدانەوە", "تایبەتمەندی تایبەت"],
+    description: "بۆتی ئۆتۆماتیکی بۆ وەڵامدانەوەی خێرا، بەڕێوەبردن و پێشکەشکردنی خزمەتگوزارییەکان.",
+    features: ["ئۆتۆماتیککردنی کارەکان", "بەڕێوەبردنی گرووپ و کەناڵ", "سیستەمی وەڵامدانەوەی ئۆتۆماتیکی", "تایبەتمەندیی تایبەت"],
   },
   {
     number: "03",
     icon: "◈",
-    title: "سیستەمی دیجیتاڵی تایبەت",
-    description: "چارەسەرێکی تایبەت بۆ ڕێکخستن، بەڕێوەبردن و ئاسانکردنی کارەکانی کاروبارەکەت.",
-    features: ["داشبۆردی بەڕێوەبەرایەتی", "داتابەیس", "سیستەمی ئەندامان", "ئۆتۆماتیککردن"],
+    title: "سیستەمی دیجیتاڵی دیار",
+    description: "چارەسەری دیجیتاڵی بۆ بەڕێوەبردن، ئۆتۆماتیککردنی کارەکان و ئاسانکاریی کارەکانت.",
+    features: ["داشبۆردی بەڕێوەبردن", "بەڕێوەبردنی داتابەیس", "سیستەمی بەکارهێنەران و ئەندامان", "ئۆتۆماتیککردنی کارەکان"],
   },
 ];
 
 const processSteps = [
   {
-    title: "گفتوگۆ",
-    description: "کاروبار، ئامانج و تایبەتمەندییە پێویستەکان دەزانین.",
+    title: "ڕاوێژ و گفتوگۆ",
+    description: "لە ئامانج و پێداویستییەکانی کاروبارەکەت دەکۆڵینەوە.",
   },
   {
-    title: "پلان و دیزاین",
-    description: "پێکهاتە و ئاراستەی بینراوی ماڵپەڕەکە ئامادە دەکەین.",
+    title: "پلاندانان و دیزاین",
+    description: "پێکهاتە و دیزاینی بینراوی وێبسایتەکە دروست دەکەین.",
   },
   {
-    title: "گەشەپێدان",
-    description: "ماڵپەڕەکە دروست دەکەین و بۆ ئامێرە جیاوازەکان ڕێکی دەخەین.",
+    title: "گەشەپێدان و کۆدنووسین",
+    description: "وێبسایتەکە بەرنامەڕێژی دەکەین و بۆ تەواوی ئامێرەکان گونجاوی دەکەین.",
   },
   {
-    title: "بڵاوکردنەوە",
+    title: "بڵاوکردنەوە و خستنەکار",
     description: "تاقی دەکەینەوە، دەیخەینە کار و بۆ سەردانکەری ڕاستەقینە ئامادەی دەکەین.",
   },
 ];
@@ -53,19 +53,19 @@ const processSteps = [
 const benefits = [
   {
     title: "دیزاینی مۆدێرن",
-    description: "هەر ماڵپەڕێک دەبێت تایبەت بێت و لەگەڵ شێوازی کاروبارەکە بگونجێت.",
+    description: "هەر وێبسایتێک بەپێی پێداویستییە تایبەتییەکانی کاروبارەکەت دیزاین دەکرێت.",
   },
   {
-    title: "گونجاو بۆ هەموو ئامێرەکان",
-    description: "ماڵپەڕەکە لەسەر مۆبایل، تابلێت و کۆمپیوتەر بە باشی کار دەکات.",
+    title: "گونجاو بۆ تەواوی ئامێرەکان",
+    description: "وێبسایتەکەت لەسەر مۆبایل، تابلێت و کۆمپیوتەر بە شێوەیەکی بێخەوش کار دەکات.",
   },
   {
-    title: "خێرایی و کارایی",
-    description: "کۆد، وێنە و باربوونی پەڕەکان بە شێوەیەکی پاک ڕێک دەخرێن.",
+    title: "خێرایی و کارایی بەرز",
+    description: "بەکارهێنانی کۆدی خاوێن و بەرزکردنەوەی خێرایی باربوونی پەڕەکان.",
   },
   {
-    title: "پەیوەندیی ڕاستەوخۆ",
-    description: "لە کاتی پڕۆژەدا پەیوەندی ڕوون و ڕاستەوخۆ لەگەڵمان دەبێت.",
+    title: "پشتیوانی و پەیوەندیی بەردەوام",
+    description: "لە تەواوی قۆناغەکانی پڕۆژەکەدا پەیوەندیی ڕوون و ڕاستەوخۆمان لەگەڵ دەبێت.",
   },
 ];
 
@@ -103,28 +103,28 @@ export default async function Home() {
             <div className="hero-content fade-up">
               <span className="badge">دیزاین و گەشەپێدانی وێبسایت</span>
               <h1>
-                وێبسایتێک دروست دەکەین کە سەردانکەران دەکاتە{" "}
+                وێبسایتێک بۆ ڕاکێشانی زۆرترین{" "}
                 <span>کڕیار</span>
               </h1>
               <p>
-                وێبسایتی خێرا، جوان و متمانەپێکراو بۆ گەشەی کاروبارەکەت دروست دەکەین.
+                دروستکردنی وێبسایتی خێرا، مۆدێرن و باوەڕپێکراو بۆ گەشەپێدان و کۆدنووسینی بڕاندەکەت.
               </p>
               <div className="hero-buttons">
                 <a className="button primary" href="#contact">
-                  دەست بە پڕۆژەکەت بکە
+                  دەستپێکردنی پڕۆژە
                 </a>
                 <a className="button ghost" href="#projects">
-                  کارەکانمان ببینە
+                  بینینی کارەکانمان
                 </a>
               </div>
               <div className="trust-chips" aria-label="تایبەتمەندییەکان">
                 <span>دیزاینی مۆدێرن</span>
                 <span>گونجاو بۆ مۆبایل</span>
-                <span>خێرا و متمانەپێکراو</span>
+                <span>خێرا و باوەڕپێکراو</span>
               </div>
             </div>
 
-            <div className="hero-visual fade-up" aria-label="پێشبینی وێبسایتی مۆدێرن">
+            <div className="hero-visual fade-up" aria-label="پێشاندانی وێبسایتی مۆدێرن">
               <div className="browser-mockup">
                 <div className="browser-bar">
                   <span />
@@ -154,9 +154,9 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="trust-strip" aria-label="جۆری کاروبارەکان">
+        <section className="trust-strip" aria-label="جۆری بوارەکان">
           <div className="container trust-strip-inner">
-            <strong>دروستکراو بۆ کاروباری مۆدێرن</strong>
+            <strong>دیار بە کاروبارە مۆدێرنەکان</strong>
             <div>
               {trustLabels.map((label) => (
                 <span key={label}>{label}</span>
@@ -169,7 +169,7 @@ export default async function Home() {
           <div className="container">
             <div className="section-head">
               <span className="badge">خزمەتگوزارییەکان</span>
-              <h2>هەموو ئەوەی کاروبارەکەت بۆ گەشەکردن پێویستی پێیە</h2>
+              <h2>سەرجەم پێداویستییەکانی گەشەی دیجیتاڵیی کاروبارەکەت</h2>
             </div>
             <div className="service-grid">
               {services.map((service) => (
@@ -196,9 +196,9 @@ export default async function Home() {
             <div className="section-head split">
               <div>
                 <span className="badge">پڕۆژەکان</span>
-                <h2>کارەکانمان باشتر لە وشە قسە دەکەن</h2>
+                <h2>نمونەی کارەکانمان</h2>
               </div>
-              <p>هەندێک لە وێبسایت و چارەسەرە دیجیتاڵییەکانمان ببینە.</p>
+              <p>هەندێک لە دوایین وێبسایتەکان و پڕۆژە دیجیتاڵییەکانمان ببینە.</p>
             </div>
             {projects.length > 0 ? (
               <div className="project-grid">
@@ -209,9 +209,9 @@ export default async function Home() {
             ) : (
               <div className="empty-projects">
                 <div className="empty-icon" aria-hidden="true">▣</div>
-                <p>پڕۆژە نوێیەکانمان بەم زووانە لێرە بڵاودەکەینەوە.</p>
+                <p>بەم زووانە پڕۆژەی نوێ زیاتر لێرە بڵاودەکەینەوە.</p>
                 <a className="button primary" href="#contact">
-                  دەست بە پڕۆژەی خۆت بکە
+                  دەستپێکردنی پڕۆژەی نوێ
                 </a>
               </div>
             )}
@@ -222,7 +222,7 @@ export default async function Home() {
           <div className="container">
             <div className="section-head">
               <span className="badge">چۆنیەتی کارکردن</span>
-              <h2>لە بیرۆکەوە تا وێبسایتێکی ئامادە</h2>
+              <h2>لە بیرۆکەوە تا پڕۆژەی تەواوکراو</h2>
             </div>
             <div className="process-line">
               {processSteps.map((step, index) => (
@@ -239,8 +239,8 @@ export default async function Home() {
         <section className="section benefits-section">
           <div className="container benefit-layout">
             <div className="benefit-copy">
-              <span className="badge">بۆچی ئێمە؟</span>
-              <h2>تەنها وێبسایت دروست ناکەین؛ ئامرازێک بۆ گەشە دروست دەکەین</h2>
+              <span className="badge">بۆچی کورد وێبسایت؟</span>
+              <h2>ئێمە تەنها وێبسایتەکان دروست ناکەین، بەڵکو ئامرازێک بۆ گەشەی بڕاندەکەت دەسازێنین</h2>
             </div>
             <div className="benefit-grid">
               {benefits.map((benefit) => (
@@ -258,8 +258,8 @@ export default async function Home() {
             <span className="badge">دەربارە</span>
             <h2>دەربارەی کورد وێبسایت</h2>
             <p>
-              کورد وێبسایت خزمەتگوزاریی دیزاین و گەشەپێدانی وێبسایت پێشکەش دەکات.
-              ئامانجمان دروستکردنی وێبسایتێکی جوان، خێرا و بەسوودە کە یارمەتی کاروبارەکان بدات باشتر بناسرێن و گەشە بکەن.
+              کورد وێبسایت ستۆدیۆیەکی تایبەتمەندە لە دیزاین و گەشەپێدانی وێبسایت و سیستەمە دیجیتاڵییەکان.
+              ئامانجمان دروستکردنی چارەسەری دیجیتاڵیی خێرا و مۆدێرنە کە یارمەتی گەشەکردنی بەردەوامی بڕاندەکەت بدات.
             </p>
           </div>
         </section>
@@ -268,13 +268,13 @@ export default async function Home() {
           <div className="container contact-card">
             <div>
               <span className="badge">پەیوەندی</span>
-              <h2>ئامادەیت کاروبارەکەت ئۆنلاین بگەشێنیت؟</h2>
-              <p>بیرۆکەت بۆمان بنێرە؛ ئێمە یارمەتیت دەدەین ببێتە وێبسایتێکی پیشەیی.</p>
+              <h2>ئامادەیت بۆ دەستپێکردنی پڕۆژەکەت؟</h2>
+              <p>بیرۆکەکەت لەگەڵمان بەشدار بکە، ئێمە دەیکەینە واقعێکی دیجیتاڵیی پیشەیی.</p>
             </div>
             <div className="contact-actions">
               {settings.telegram_url ? (
                 <a className="button primary" href={settings.telegram_url} rel="noreferrer" target="_blank">
-                  لە تێلەگرام پەیوەندیمان پێوە بکە
+                  پەیوەندیکردن لە ڕێگەی تێلەگرام
                 </a>
               ) : null}
               {settings.email ? (
@@ -288,7 +288,7 @@ export default async function Home() {
       </main>
 
       {primaryContact ? (
-        <a className="floating-contact" href={primaryContact} rel="noreferrer" target={primaryContact.startsWith("http") ? "_blank" : undefined} aria-label="پەیوەندی خێرا">
+        <a className="floating-contact" href={primaryContact} rel="noreferrer" target={primaryContact.startsWith("http") ? "_blank" : undefined} aria-label="پەیوەندیی خێرا">
           پەیوەندی
         </a>
       ) : null}
@@ -300,20 +300,20 @@ export default async function Home() {
               <span className="brand-symbol" aria-hidden="true">KW</span>
               <span>کورد وێبسایت</span>
             </Link>
-            <p>وێبسایت، بۆتی تێلەگرام و سیستەمی دیجیتاڵی بۆ کاروبار و کەسایەتییەکان.</p>
+            <p>دروستکردنی وێبسایتەکان، بۆتی تێلەگرام و سیستەمی دیجیتاڵی بۆ کاروبارەکان.</p>
           </div>
-          <nav aria-label="لینکەکانی پەڕە">
-            <strong>ڕێنوێنی</strong>
+          <nav aria-label="بەشەکانی وێبسایت">
+            <strong>بەشە سەرەکییەکان</strong>
             <a href="#services">خزمەتگوزارییەکان</a>
             <a href="#projects">پڕۆژەکان</a>
             <a href="#process">چۆنیەتی کارکردن</a>
             <a href="#contact">پەیوەندی</a>
           </nav>
           <nav aria-label="خزمەتگوزارییەکان">
-            <strong>خزمەتگوزاری</strong>
-            <a href="#services">وێبسایت</a>
+            <strong>خزمەتگوزارییەکان</strong>
+            <a href="#services">وێبسایتەکان</a>
             <a href="#services">بۆتی تێلەگرام</a>
-            <a href="#services">سیستەمی تایبەت</a>
+            <a href="#services">سیستەمی دیجیتاڵی</a>
           </nav>
           <div>
             <strong>پەیوەندی</strong>

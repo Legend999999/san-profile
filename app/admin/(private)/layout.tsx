@@ -7,14 +7,14 @@ export default function AdminPrivateLayout({ children }: { children: React.React
       <aside className="sidebar">
         <Link className="brand" href="/admin">
           <span className="brand-mark">ک</span>
-          <span>کورد وێب Admin</span>
+          <span>بەڕێوەبەری کورد وێبسایت</span>
         </Link>
-        <nav className="sidebar-nav" aria-label="ڕێنوێنی داشبۆرد">
+        <nav className="sidebar-nav" aria-label="منوی داشبۆرد">
           <Link href="/admin">داشبۆرد</Link>
           <Link href="/admin/projects">پڕۆژەکان</Link>
           <Link href="/admin/projects/new">زیادکردنی پڕۆژە</Link>
-          <Link href="/admin/settings">ڕێکخستنەکانی ماڵپەڕ</Link>
-          <Link href="/">بینینی ماڵپەڕ</Link>
+          <Link href="/admin/settings">ڕێکخستنەکانی وێبسایت</Link>
+          <Link href="/">بینینی وێبسایت</Link>
           <form action={logout}>
             <button type="submit">چوونەدەرەوە</button>
           </form>

@@ -9,22 +9,22 @@ export default async function AdminProjects() {
     <>
       <div className="admin-topbar">
         <div>
-          <p className="eyebrow">بەڕێوەبردنی کارەکان</p>
+          <p className="eyebrow">بەڕێوەبردنی پڕۆژەکان</p>
           <h1>پڕۆژەکان</h1>
-          <p className="muted">پڕۆژە دروست بکە، بڵاوی بکەرەوە، ڕیزبەندی بکە، پێشبینی بکە و بسڕەوە.</p>
+          <p className="muted">دروستکردن، دەستکاری، ڕیزبەندی و سڕینەوەی پڕۆژەکان.</p>
         </div>
         <Link className="button primary" href="/admin/projects/new">زیادکردنی پڕۆژە</Link>
       </div>
       {projects.length === 0 ? (
         <div className="empty-state admin-empty">
-          <h3>هیچ پڕۆژەیەک نییە.</h3>
-          <p>پۆرتفۆلیۆی گشتی پاک دەمێنێتەوە تا پڕۆژەی ڕاستەقینە Published دەکەیت.</p>
+          <h3>هیچ پڕۆژەیەک نەدۆزرایەوە.</h3>
+          <p>پەڕەی سەرەکی بە بەتاڵی دەمێنێتەوە تاوەکو پڕۆژەی نوێ بڵاو دەکەیتەوە.</p>
           <Link className="button primary" href="/admin/projects/new">زیادکردنی پڕۆژە</Link>
         </div>
       ) : (
         <div className="table-wrap">
           <table>
-            <thead><tr><th>پڕۆژە</th><th>URL</th><th>دۆخ</th><th>ڕیز</th><th>کردارەکان</th></tr></thead>
+            <thead><tr><th>پڕۆژە</th><th>URL</th><th>دۆخ</th><th>ڕیزبەندی</th><th>کردارەکان</th></tr></thead>
             <tbody>
               {projects.map((project) => (
                 <tr key={project.id}>
@@ -33,14 +33,14 @@ export default async function AdminProjects() {
                   <td>
                     <div className="badge-stack">
                       <span className={`status-badge ${project.published ? "published" : "draft"}`}>{project.published ? "بڵاوکراوە" : "Draft"}</span>
-                      {project.featured ? <span className="status-badge featured">تایبەت</span> : null}
+                      {project.featured ? <span className="status-badge featured">دیار</span> : null}
                     </div>
                   </td>
                   <td>{project.display_order}</td>
                   <td>
                     <div className="table-actions">
                       <Link className="button" href={`/admin/projects/${project.id}`}>دەستکاری</Link>
-                      <Link className="button" href={`/projects/${project.slug}`}>بینینی پێشەکی</Link>
+                      <Link className="button" href={`/projects/${project.slug}`}>پێشاندانی ڕاستەوخۆ</Link>
                       <DeleteProjectButton id={project.id} title={project.title} />
                     </div>
                   </td>

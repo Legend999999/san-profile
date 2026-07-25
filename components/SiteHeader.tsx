@@ -43,7 +43,7 @@ export function SiteHeader() {
           <span>کورد وێبسایت</span>
         </Link>
 
-        <nav className="desktop-nav" aria-label="ڕێنوێنی سەرەکی">
+        <nav className="desktop-nav" aria-label="منوی سەرەکی">
           {navItems.map((item) => (
             <a key={item.href} href={item.href}>
               {item.label}
@@ -52,13 +52,13 @@ export function SiteHeader() {
         </nav>
 
         <a className="nav-cta" href="#contact">
-          داوای وێبسایت بکە
+          داواکاری وێبسایت
         </a>
 
         <button
           aria-controls="mobile-menu"
           aria-expanded={open}
-          aria-label={open ? "داخستنی لیستی ڕێنوێنی" : "کردنەوەی لیستی ڕێنوێنی"}
+          aria-label={open ? "داخستنی منو" : "کردنەوەی منو"}
           className="menu-toggle"
           onClick={() => setOpen((value) => !value)}
           type="button"
@@ -70,14 +70,14 @@ export function SiteHeader() {
       </div>
 
       <div className={`mobile-menu ${open ? "open" : ""}`} id="mobile-menu">
-        <nav aria-label="ڕێنوێنی مۆبایل">
+        <nav aria-label="منوی مۆبایل">
           {navItems.map((item) => (
             <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
               {item.label}
             </a>
           ))}
           <a className="button primary" href="#contact" onClick={() => setOpen(false)}>
-            داوای وێبسایت بکە
+            داواکاری وێبسایت
           </a>
         </nav>
       </div>

@@ -39,11 +39,11 @@ export default async function ProjectPreview({ params }: { params: Promise<{ slu
         <div className="site-shell nav-inner">
           <Link className="brand" href="/">
             <span className="brand-mark">ک</span>
-            <span>کورد وێب</span>
+            <span>کورد وێبسایت</span>
           </Link>
-          <nav className="nav-links" aria-label="ڕێنوێنی پڕۆژە">
+          <nav className="nav-links" aria-label="منوی پڕۆژە">
             <Link href="/#projects">گەڕانەوە بۆ پڕۆژەکان</Link>
-            <a href={project.website_url} target="_blank" rel="noreferrer">کردنەوەی وێبسایتی ڕەسەن</a>
+            <a href={project.website_url} target="_blank" rel="noreferrer">سەردانی وێبسایتی ڕاستەقینە</a>
           </nav>
         </div>
       </header>
@@ -57,23 +57,23 @@ export default async function ProjectPreview({ params }: { params: Promise<{ slu
           </div>
           <div className="hero-actions">
             <Link className="button" href="/#projects">گەڕانەوە بۆ پڕۆژەکان</Link>
-            <a className="button primary" href={project.website_url} target="_blank" rel="noreferrer">کردنەوە لە تابێکی نوێ</a>
+            <a className="button primary" href={project.website_url} target="_blank" rel="noreferrer">کردنەوە لە پەڕەیەک بە جیا</a>
           </div>
         </section>
         <section className="section" style={{ paddingTop: 0 }}>
           <div className="section-header">
-            <h2 className="section-title">پێشاندانی ڕاستەوخۆ</h2>
+            <h2 className="section-title">پێشاندانی ڕاستەوخۆ (Live Preview)</h2>
           </div>
           {canTryIframe ? (
             <>
-              <iframe src={project.website_url} title={`${project.title} پێشاندانی ڕاستەوخۆ`} loading="lazy" />
-              <p className="muted">ئەگەر پێشاندانەکە بار نەبوو، ئەم وێبسایتە ڕێگە بە پێشاندانی ناوخۆیی نادات.</p>
+              <iframe src={project.website_url} title={`${project.title} پێشاندانی ڕاستەوخۆ (Live Preview)`} loading="lazy" />
+              <p className="muted">لەبەر هۆکاری پاراستن، ئەم وێبسایتە ڕێگە بە پێشاندانی ڕاستەوخۆ (Live Preview) لەم پەڕەیەدا نادات.</p>
             </>
           ) : (
             <div className="empty-state">
-              ئەم وێبسایتە ڕێگە بە پێشاندانی ناوخۆیی نادات.
+              ئەم وێبسایتە ڕێگە بە پێشاندانی ڕاستەوخۆ (Live Preview) نادات.
               <div className="hero-actions">
-                <a className="button primary" href={project.website_url} target="_blank" rel="noreferrer">کردنەوە لە تابێکی نوێ</a>
+                <a className="button primary" href={project.website_url} target="_blank" rel="noreferrer">کردنەوە لە پەڕەیەک بە جیا</a>
               </div>
             </div>
           )}

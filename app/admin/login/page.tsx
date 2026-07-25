@@ -66,22 +66,22 @@ export default async function AdminLogin({
     <main className="login-shell">
       <div className="login-aura login-aura-one" />
       <div className="login-aura login-aura-two" />
-      <section className="login-stage" aria-label="چوونەژوورەوەی بەڕێوەبەری کورد وێب">
+      <section className="login-stage" aria-label="چوونەژوورەوەی بەڕێوەبەر | کورد وێبسایت">
         <div className="login-copy">
           <div className="brand login-brand">
             <span className="brand-mark">ک</span>
-            <span>کورد وێب</span>
+            <span>کورد وێبسایت</span>
           </div>
-          <p className="eyebrow">شوێنی تایبەتی بەڕێوەبردن</p>
-          <h1>هەموو پڕۆژە و ناوەڕۆکەکان لە داشبۆردێکی ڕێکوپێک بەڕێوەببە.</h1>
+          <p className="eyebrow">پێناسی بەڕێوەبەری</p>
+          <h1>بەڕێوەبردنی پڕۆژە و ناوەڕۆکی وێبسایت بە ئاسانی.</h1>
           <p className="lead">
             پڕۆژە زیاد بکە، وێنە بار بکە، Published دابنێ و
-            گۆڕانکارییەکانی ماڵپەڕەکەت پاشەکەوت بکە.
+            گۆڕانکارییەکانی وێبسایتەکەت پاشەکەوت بکە.
           </p>
           <div className="login-metrics" aria-label="تایبەتمەندییەکانی داشبۆرد">
             <span>پڕۆژەکان</span>
             <span>ڕێکخستنەکان</span>
-            <span>بڵاوکردنەوە</span>
+            <span>بڵاوکردنەوە و خستنەکار</span>
           </div>
           <div className="login-preview" aria-hidden="true">
             <div className="login-preview-top">
@@ -91,7 +91,7 @@ export default async function AdminLogin({
             </div>
             <div className="login-preview-body">
               <div>
-                <small>پڕۆژەی تایبەت</small>
+                <small>پڕۆژەی دیار</small>
                 <strong>وێبسایتی مۆدێرن</strong>
               </div>
               <div className="login-preview-graph">
@@ -113,7 +113,7 @@ export default async function AdminLogin({
               </div>
               <span className="login-lock">پارێزراو</span>
             </div>
-            <p className="muted">بە Email و وشەی نهێنی Supabase بچۆ ژوورەوە.</p>
+            <p className="muted">ئیمەیڵ و وشەی نهێنی بنووسە بۆ چوونەژوورەوە.</p>
             {params.error ? (
               <p className="notice login-notice">{decodeURIComponent(params.error)}</p>
             ) : null}
@@ -144,12 +144,12 @@ export default async function AdminLogin({
                 />
               </div>
               <button className="button primary login-submit" type="submit">
-                چوونەژوورەوە بۆ داشبۆرد
+                چوونەژوورەوە
               </button>
             </form>
             <div className="login-footnote">
-              <span>ناوچەی پارێزراوی بەڕێوەبەر</span>
-              <Link href="/">گەڕانەوە بۆ ماڵپەڕ</Link>
+              <span>سیستەمی پارێزراوی بەڕێوەبردن</span>
+              <Link href="/">گەڕانەوە بۆ وێبسایت</Link>
             </div>
           </section>
         </div>

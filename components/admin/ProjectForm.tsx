@@ -50,7 +50,7 @@ export function ProjectForm({ project }: { project?: Project | null }) {
       setMessage(await response.text());
       return;
     }
-    setMessage(project ? "پڕۆژەکە نوێکرایەوە." : "پڕۆژەکە دروستکرا.");
+    setMessage(project ? "پڕۆژەکە بە سەرکەوتوویی نوێکرایەوە." : "پڕۆژەکە بە سەرکەوتوویی دروستکرا.");
     router.refresh();
     if (!project) {
       const saved = await response.json();
@@ -60,7 +60,7 @@ export function ProjectForm({ project }: { project?: Project | null }) {
 
   async function generateShot() {
     setGenerating(true);
-    setMessage("لە دروستکردنی screenshot دایە...");
+    setMessage("لە دروستکردنی وێنەی ڕوونما (Screenshot) دایە...");
     const response = await fetch("/admin/api/screenshots", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -69,17 +69,17 @@ export function ProjectForm({ project }: { project?: Project | null }) {
     const result = await response.json();
     setGenerating(false);
     if (!response.ok) {
-      setMessage(result.error ?? "دروستکردنی screenshot سەرکەوتوو نەبوو.");
+      setMessage(result.error ?? "دروستکردنی وێنەی ڕوونما سەرکەوتوو نەبوو.");
       return;
     }
     setScreenshotUrl(result.screenshotUrl);
-    setMessage("screenshot دروستکرا.");
+    setMessage("وێنەی ڕوونما دروستکرا.");
   }
 
   async function uploadImage() {
     const file = fileInputRef.current?.files?.[0];
     if (!file) {
-      setMessage("سەرەتا وێنەیەک هەڵبژێرە.");
+      setMessage("تکایە سەرەتا وێنەیەک هەڵبژێرە.");
       return;
     }
 
@@ -101,7 +101,7 @@ export function ProjectForm({ project }: { project?: Project | null }) {
     }
 
     setScreenshotUrl(result.imageUrl);
-    setMessage("وێنەکە بارکرا.");
+    setMessage("وێنەکە بە سەرکەوتوویی بارکرا.");
   }
 
   return (
@@ -109,7 +109,7 @@ export function ProjectForm({ project }: { project?: Project | null }) {
       {message ? <p className="notice">{message}</p> : null}
       <div className="form-grid">
         <div className="field">
-          <label htmlFor="title">ناونیشان</label>
+          <label htmlFor="title">ناونیشانی پڕۆژە</label>
           <input className="input" id="title" value={title} onChange={(event) => {
             setTitle(event.target.value);
             if (!project) setSlug(slugify(event.target.value));
@@ -120,15 +120,15 @@ export function ProjectForm({ project }: { project?: Project | null }) {
           <input className="input" id="slug" value={slug} onChange={(event) => setSlug(slugify(event.target.value))} required />
         </div>
         <div className="field">
-          <label htmlFor="website_url">URL ـی وێبسایت</label>
+          <label htmlFor="website_url">بەستەری (URL) وێبسایت</label>
           <input className="input" id="website_url" value={websiteUrl} onChange={(event) => setWebsiteUrl(event.target.value)} required />
         </div>
         <div className="field">
-          <label htmlFor="category">پۆل</label>
+          <label htmlFor="category">پۆلێن</label>
           <select className="select" id="category" name="category" defaultValue={project?.category ?? "Websites"}>
             <option value="Websites">وێبسایتەکان</option>
             <option value="Bots">بۆتەکان</option>
-            <option value="Tools">ئامرازەکان</option>
+            <option value="Tools">سیستەم و ئامرازەکان</option>
             <option value="Designs">دیزاینەکان</option>
           </select>
         </div>
@@ -137,20 +137,20 @@ export function ProjectForm({ project }: { project?: Project | null }) {
           <textarea className="textarea" id="short_description" name="short_description" defaultValue={project?.short_description ?? ""} required />
         </div>
         <div className="field">
-          <label htmlFor="full_description">وردەکاری پڕۆژە</label>
+          <label htmlFor="full_description">وردەکارییەکانی پڕۆژە</label>
           <textarea className="textarea" id="full_description" name="full_description" defaultValue={project?.full_description ?? ""} />
         </div>
         <div className="field">
-          <label htmlFor="technologies">تەکنەلۆژیاکان</label>
+          <label htmlFor="technologies">تەکنەلۆژیا بەکارهاتووەکان</label>
           <input className="input" id="technologies" name="technologies" defaultValue={project?.technologies.join(", ") ?? ""} placeholder="Next.js, TypeScript, Tailwind CSS" />
         </div>
         <div className="field">
-          <label htmlFor="display_order">ڕیزی پیشاندان</label>
+          <label htmlFor="display_order">ڕیزبەندیی پیشاندان</label>
           <input className="input" id="display_order" name="display_order" type="number" defaultValue={project?.display_order ?? 0} />
         </div>
       </div>
       <div className="field" style={{ marginTop: 16 }}>
-        <label htmlFor="screenshot_url">URL ـی وێنەی پڕۆژە</label>
+        <label htmlFor="screenshot_url">بەستەری (URL) وێنەی پڕۆژە</label>
         <input className="input" id="screenshot_url" value={screenshotUrl} onChange={(event) => setScreenshotUrl(event.target.value)} />
       </div>
       <div className="hero-actions">
@@ -159,12 +159,12 @@ export function ProjectForm({ project }: { project?: Project | null }) {
           {uploading ? "لە بارکردنی وێنەدایە..." : "بارکردنی وێنە"}
         </button>
         <button className="button" disabled={generating || !websiteUrl} onClick={generateShot} type="button">
-          {generating ? "لە دروستکردنی screenshot دایە..." : project?.screenshot_url ? "دووبارە دروستکردنی screenshot" : "دروستکردنی screenshot"}
+          {generating ? "لە دروستکردنی وێنەی ڕوونما (Screenshot) دایە..." : project?.screenshot_url ? "دروستکردنەوەی وێنەی ڕوونما" : "دروستکردنی وێنەی ڕوونما"}
         </button>
       </div>
       <div className="switch-row" style={{ marginTop: 16 }}>
         <label className="checkbox"><input name="published" type="checkbox" defaultChecked={project?.published ?? false} /> بڵاوکراوە</label>
-        <label className="checkbox"><input name="featured" type="checkbox" defaultChecked={project?.featured ?? false} /> تایبەت</label>
+        <label className="checkbox"><input name="featured" type="checkbox" defaultChecked={project?.featured ?? false} /> دیار</label>
       </div>
       <div className="hero-actions">
         <button className="button primary" disabled={busy} type="submit">{busy ? "لە پاشەکەوتکردندایە..." : "پاشەکەوتکردنی پڕۆژە"}</button>

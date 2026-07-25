@@ -10,8 +10,8 @@ export default async function SettingsPage() {
     <>
       <div className="admin-topbar">
         <div>
-          <p className="eyebrow">ناوەڕۆکی دەستکاریکراو</p>
-          <h1>ڕێکخستنەکانی ماڵپەڕ</h1>
+          <p className="eyebrow">دەستکاریکردنی ناوەڕۆک</p>
+          <h1>ڕێکخستنەکانی وێبسایت</h1>
         </div>
       </div>
       <SettingsForm settings={settings} />
