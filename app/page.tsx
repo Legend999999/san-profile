@@ -31,7 +31,7 @@ export default async function Home() {
             <div className="hero-copy">
               <span className="eyebrow">Kurd Web / کورد وێب</span>
               <h1>
-                بیرۆکەت دەکەینە ئەزموونێکی دیجیتاڵی بەهێز
+                ئێمە ماڵپەڕی بەهێز دروست دەکەین کە بیرۆکەکانت دەکاتە گەشەی ڕاستەقینەی بازرگانی
               </h1>
               <p className="lead">وێبسایت و چارەسەری دیجیتاڵی پیشەیی بۆ کاروبارەکەت دروست دەکەین.</p>
               <div className="hero-actions">
