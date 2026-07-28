@@ -1,17 +1,27 @@
-import { fallbackSettings } from "./config";
+import { fallbackProjects, fallbackSettings } from "./config";
 import { supabaseRequest, SupabaseConfigError, getSessionToken } from "./supabase-rest";
 import type { Project, WebsiteSettings } from "./types";
 
+function withFallbackProjects(projects: Project[]) {
+  const existingUrls = new Set(projects.map((project) => project.website_url));
+  const existingSlugs = new Set(projects.map((project) => project.slug));
+  const missingFallbacks = fallbackProjects.filter(
+    (project) => !existingUrls.has(project.website_url) && !existingSlugs.has(project.slug),
+  );
+  return [...missingFallbacks, ...projects];
+}
+
 export async function getPublishedProjects() {
   try {
-    return await supabaseRequest<Project[]>(
+    const projects = await supabaseRequest<Project[]>(
       "/rest/v1/projects?select=*&published=eq.true&order=featured.desc,display_order.asc,created_at.desc",
     );
+    return withFallbackProjects(projects);
   } catch (error) {
     if (error instanceof SupabaseConfigError) {
-      return [];
+      return fallbackProjects;
     }
-    return [];
+    return fallbackProjects;
   }
 }
 
@@ -35,12 +45,12 @@ export async function getProjectBySlug(slug: string) {
     const rows = await supabaseRequest<Project[]>(
       `/rest/v1/projects?select=*&slug=eq.${encodeURIComponent(slug)}&published=eq.true&limit=1`,
     );
-    return rows[0] ?? null;
+    return rows[0] ?? fallbackProjects.find((project) => project.slug === slug) ?? null;
   } catch (error) {
     if (error instanceof SupabaseConfigError) {
-      return null;
+      return fallbackProjects.find((project) => project.slug === slug) ?? null;
     }
-    return null;
+    return fallbackProjects.find((project) => project.slug === slug) ?? null;
   }
 }
 
