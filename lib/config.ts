@@ -17,22 +17,6 @@ export const fallbackSettings = {
 
 export const fallbackProjects: Project[] = [
   {
-    id: "kurd-website-vercel",
-    title: "کورد وێبسایت",
-    slug: "kurd-website",
-    short_description: "ماڵپەڕی رسمی کورد وێبسایت بۆ ناساندنی خزمەتگوزارییەکان و پڕۆژەکان.",
-    full_description: "ماڵپەڕی رسمی کورد وێبسایت بۆ ناساندنی خزمەتگوزارییەکان، پڕۆژەکان و ڕێگای پەیوەندی کردن.",
-    website_url: "https://san-profile.vercel.app/#projects",
-    screenshot_url: null,
-    technologies: ["Next.js", "Vercel"],
-    category: "وێبسایت",
-    featured: true,
-    published: true,
-    display_order: 0,
-    created_at: "2026-07-28T00:00:00.000Z",
-    updated_at: "2026-07-28T00:00:00.000Z",
-  },
-  {
     id: "obera-iraq",
     title: "Obera Iraq",
     slug: "obera-iraq",

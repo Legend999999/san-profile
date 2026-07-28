@@ -41,11 +41,8 @@ export function ProjectCard({ project }: { project: Project }) {
           </div>
         ) : null}
         <div className="project-actions">
-          <a className="button primary" href={project.website_url} target="_blank" rel="noreferrer">
-            بینینی وێبسایت
-          </a>
-          <Link className="button ghost" href={`/projects/${project.slug}`}>
-            وردەکارییەکان
+          <Link className="button primary" href={`/projects/${project.slug}`}>
+            پێشبینینی پڕۆژە
           </Link>
         </div>
       </div>
