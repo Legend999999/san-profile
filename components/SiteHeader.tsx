@@ -52,7 +52,7 @@ export function SiteHeader() {
         </nav>
 
         <a className="nav-cta" href="#contact">
-          داواکاری وێبسایت
+          گفتوگۆی سەرەتایی
         </a>
 
         <button
@@ -77,7 +77,7 @@ export function SiteHeader() {
             </a>
           ))}
           <a className="button primary" href="#contact" onClick={() => setOpen(false)}>
-            داواکاری وێبسایت
+            گفتوگۆی سەرەتایی
           </a>
         </nav>
       </div>

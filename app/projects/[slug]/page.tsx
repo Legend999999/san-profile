@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ProjectPreview } from "@/components/ProjectPreview";
 import { getProjectBySlug } from "@/lib/data";
-import { isProbablyEmbeddable } from "@/lib/url-security";
+import { getProjectDetail } from "@/lib/project-details";
+import { absoluteUrl, siteConfig } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
@@ -14,24 +16,32 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   return {
-    title: project.title,
+    title: `${project.title} - پڕۆژەی ${siteConfig.englishName}`,
     description: project.short_description,
-    alternates: { canonical: `/projects/${project.slug}` },
+    alternates: { canonical: absoluteUrl(`/projects/${project.slug}`) },
     openGraph: {
-      title: project.title,
+      title: `${project.title} - ${siteConfig.englishName}`,
       description: project.short_description,
-      images: project.screenshot_url ? [{ url: project.screenshot_url }] : undefined,
+      url: absoluteUrl(`/projects/${project.slug}`),
+      images: project.screenshot_url ? [{ url: project.screenshot_url }] : [],
+    },
+    twitter: {
+      card: project.screenshot_url ? "summary_large_image" : "summary",
+      title: `${project.title} - ${siteConfig.englishName}`,
+      description: project.short_description,
+      images: project.screenshot_url ? [project.screenshot_url] : [],
     },
   };
 }
 
-export default async function ProjectPreview({ params }: { params: Promise<{ slug: string }> }) {
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const project = await getProjectBySlug(slug);
   if (!project) {
     return notFound();
   }
-  const canTryIframe = isProbablyEmbeddable(project.website_url);
+  const detail = getProjectDetail(project);
+  const hasLiveUrl = detail.live && Boolean(project.website_url);
 
   return (
     <>
@@ -43,40 +53,84 @@ export default async function ProjectPreview({ params }: { params: Promise<{ slu
           </Link>
           <nav className="nav-links" aria-label="منوی پڕۆژە">
             <Link href="/#projects">گەڕانەوە بۆ پڕۆژەکان</Link>
-            <a href={project.website_url} target="_blank" rel="noreferrer">سەردانی وێبسایتی ڕاستەقینە</a>
+            {hasLiveUrl ? (
+              <a href={project.website_url} target="_blank" rel="noreferrer">سەردانی وێبسایتی ڕاستەقینە</a>
+            ) : null}
           </nav>
         </div>
       </header>
-      <main className="site-shell preview-page">
-        <section className="section">
-          <p className="eyebrow">{project.category}</p>
-          <h1 className="section-title">{project.title}</h1>
-          <p className="lead">{project.full_description || project.short_description}</p>
-          <div className="tag-row">
-            {project.technologies.map((technology) => <span className="tag" key={technology}>{technology}</span>)}
+      <main className="site-shell project-detail-page">
+        <section className="project-hero-detail">
+          <div>
+            <p className="eyebrow">{project.category}</p>
+            <h1>{project.title}</h1>
+            <p className="lead">{project.full_description || project.short_description}</p>
+            <div className="tag-row">
+              {project.technologies.map((technology) => <span className="tag" key={technology}>{technology}</span>)}
+            </div>
+            <div className="hero-actions">
+              <Link className="button" href="/#projects">گەڕانەوە بۆ پڕۆژەکان</Link>
+              {hasLiveUrl ? (
+                <a className="button primary" href={project.website_url} target="_blank" rel="noreferrer">سەردانی وێبسایتی ڕاستەقینە</a>
+              ) : null}
+            </div>
           </div>
-          <div className="hero-actions">
-            <Link className="button" href="/#projects">گەڕانەوە بۆ پڕۆژەکان</Link>
-            <a className="button primary" href={project.website_url} target="_blank" rel="noreferrer">کردنەوە لە پەڕەیەک بە جیا</a>
+          <div className="project-hero-visual" aria-label={`پێشبینینی بینراوی پڕۆژەی ${project.title}`}>
+            {project.screenshot_url ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={project.screenshot_url} alt={`وێنەی پڕۆژەی ${project.title}`} />
+            ) : (
+              <ProjectPreview project={project} />
+            )}
           </div>
         </section>
-        <section className="section" style={{ paddingTop: 0 }}>
-          <div className="section-header">
-            <h2 className="section-title">پێشاندانی ڕاستەوخۆ (Live Preview)</h2>
+
+        <section className="project-case-grid" aria-label="وردەکاری پڕۆژە">
+          <article>
+            <span>Project overview</span>
+            <h2>پوختەی پڕۆژە</h2>
+            <p>{detail.overview}</p>
+          </article>
+          <article>
+            <span>Problem or purpose</span>
+            <h2>ئامانج</h2>
+            <p>{detail.purpose}</p>
+          </article>
+          <article>
+            <span>What was built</span>
+            <h2>چی دروست کرا؟</h2>
+            <p>{detail.built}</p>
+          </article>
+          <article>
+            <span>Technology used</span>
+            <h2>تەکنەلۆژیا</h2>
+            <p>{project.technologies.join("، ")}</p>
+          </article>
+        </section>
+
+        <section className="section project-features">
+          <div className="section-head">
+            <span className="badge">Main features</span>
+            <h2>تایبەتمەندییە سەرەکییەکان</h2>
           </div>
-          {canTryIframe ? (
-            <>
-              <iframe src={project.website_url} title={`${project.title} پێشاندانی ڕاستەوخۆ (Live Preview)`} loading="lazy" />
-              <p className="muted">لەبەر هۆکاری پاراستن، ئەم وێبسایتە ڕێگە بە پێشاندانی ڕاستەوخۆ (Live Preview) لەم پەڕەیەدا نادات.</p>
-            </>
-          ) : (
-            <div className="empty-state">
-              ئەم وێبسایتە ڕێگە بە پێشاندانی ڕاستەوخۆ (Live Preview) نادات.
-              <div className="hero-actions">
-                <a className="button primary" href={project.website_url} target="_blank" rel="noreferrer">کردنەوە لە پەڕەیەک بە جیا</a>
-              </div>
+          <div className="feature-list">
+            {detail.features.map((feature) => (
+              <div key={feature}>{feature}</div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section detail-cta">
+          <div className="contact-card">
+            <div>
+              <span className="badge">پڕۆژەی نوێ</span>
+              <h2>دەتەوێت پڕۆژەیەکی وەک ئەمە بۆ کاروبارەکەت هەبێت؟</h2>
+              <p>بیرۆکەکەت بنێرە و لە گفتوگۆیەکی سەرەتایی بەبێ فشاری فرۆشتن باس دەکەین چی پێویستە.</p>
             </div>
-          )}
+            <div className="contact-actions">
+              <Link className="button primary" href="/#contact">دەستپێکردنی گفتوگۆ</Link>
+            </div>
+          </div>
         </section>
       </main>
     </>

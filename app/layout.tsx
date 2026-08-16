@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Vazirmatn } from "next/font/google";
+import { siteConfig } from "@/lib/site";
 import "./globals.css";
 
 const vazirmatn = Vazirmatn({
@@ -13,24 +14,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://kurdwebsite.com";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "کورد وێبسایت | دروستکردنی وێبسایت و سیستەمی دیجیتاڵی",
+    default: "کورد وێبسایت | وێبسایت و بۆتی تێلەگرام بۆ کاروبار",
     template: "%s | کورد وێبسایت",
   },
-  description:
-    "دیزاین و گەشەپێدانی وێبسایتی پیشەیی، بۆتی تێلەگرام و سیستەمی دیجیتاڵی لە کوردستان.",
+  description: siteConfig.description,
   alternates: {
-    canonical: "/",
+    canonical: siteConfig.url,
   },
   openGraph: {
     title: "کورد وێبسایت | Kurd Website",
-    description:
-      "دیزاین و گەشەپێدانی وێبسایت و سیستەمی دیجیتاڵی بۆ کاروبارەکان.",
-    url: siteUrl,
+    description: siteConfig.description,
+    url: siteConfig.url,
     siteName: "Kurd Website",
     images: [{ url: "/og.png", width: 1200, height: 630, alt: "کورد وێبسایت" }],
     type: "website",
@@ -38,8 +35,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "کورد وێبسایت | Kurd Website",
-    description:
-      "دیزاین و گەشەپێدانی وێبسایت و سیستەمی دیجیتاڵی بۆ کاروبارەکان.",
+    description: siteConfig.description,
     images: ["/og.png"],
   },
   icons: {

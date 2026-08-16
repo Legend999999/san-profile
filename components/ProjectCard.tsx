@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import { ProjectPreview } from "@/components/ProjectPreview";
 import type { Project } from "@/lib/types";
 
 export function ProjectCard({ project }: { project: Project }) {
@@ -16,10 +17,7 @@ export function ProjectCard({ project }: { project: Project }) {
             {project.screenshot_url ? (
               <img src={project.screenshot_url} alt={`وێنەی پڕۆژەی ${project.title}`} loading="lazy" />
             ) : (
-              <div className="fallback-shot">
-                <span>{project.category}</span>
-                <strong>{project.title}</strong>
-              </div>
+              <ProjectPreview project={project} compact />
             )}
           </div>
         </div>
@@ -42,7 +40,7 @@ export function ProjectCard({ project }: { project: Project }) {
         ) : null}
         <div className="project-actions">
           <Link className="button primary" href={`/projects/${project.slug}`}>
-            پێشبینینی پڕۆژە
+            وردەکاری پڕۆژە
           </Link>
         </div>
       </div>
